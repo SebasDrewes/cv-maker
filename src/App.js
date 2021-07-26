@@ -1,25 +1,35 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import GeneralInfo from './components/GeneralInfo'
+import StudiesInfo from './components/StudiesInfo'
+import WorkInfo from './components/WorkInfo'
 
-function App() {
+class App extends React.Component{
+  constructor(){
+    super()
+    this.state = {
+      personalInfo: {
+        firstName: '',
+        lastName: '',
+        title: '',
+        photo: '',
+        addres: '',
+        phoneNumber: '',
+        email: '',
+        description: '',
+      }
+    }
+  }
+  render() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      Informacion Personal
+      <GeneralInfo />
+      <StudiesInfo />
+      <WorkInfo />
     </div>
   );
+}
 }
 
 export default App;
