@@ -1,9 +1,15 @@
 import React from 'react'
 
-export default function WorkInfo() {
+export default function WorkInfo({saveWorkInfo}) {
     return (
         <div>
-            <h1>Hello Work</h1>
+            <form>
+                <input type="text" name="position" placeholder="Posicion" onChange={saveWorkInfo}></input>
+                <input type="text" name="company" placeholder="Compañía" onChange={saveWorkInfo}></input>
+                <input type="text" name="city" placeholder="Ciudad" onChange={saveWorkInfo}></input>
+                <input type="text" name="from" placeholder="Desde"onChange={saveWorkInfo}></input>
+                <input type="text" name="to" placeholder="Hasta" onChange={saveWorkInfo}></input>
+            </form>
         </div>
     )
 }

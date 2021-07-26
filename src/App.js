@@ -17,9 +17,24 @@ class App extends React.Component{
         phoneNumber: '',
         email: '',
         description: '',
+      },
+      studiesInfo: {
+        institute: '',
+        title: '',
+        from: '',
+        to: '',
+      },
+      workInfo: {
+        position: '',
+        company: '',
+        city: '',
+        from: '',
+        to: '',
       }
     }
     this.saveGeneralInfo = this.saveGeneralInfo.bind(this)
+    this.saveStudiesInfo = this.saveStudiesInfo.bind(this)
+    this.saveWorkInfo = this.saveWorkInfo.bind(this)
   }
   saveGeneralInfo(e) {
     e.preventDefault();
@@ -32,15 +47,43 @@ class App extends React.Component{
         this.state.generalInfo,
         {[name] : value}
       )})
-    console.log(this.state)
+      console.log(this.state)
+  }
+  saveStudiesInfo(e) {
+    e.preventDefault();
+    const target = e.target
+    const value = target.value
+    const name = target.name
+    this.setState({
+      studiesInfo: Object.assign(
+        {},
+        this.state.studiesInfo,
+        {[name] : value}
+      )})
+      console.log(this.state)
+  }
+  saveWorkInfo(e) {
+    e.preventDefault();
+    const target = e.target
+    const value = target.value
+    const name = target.name
+    this.setState({
+      workInfo: Object.assign(
+        {},
+        this.state.workInfo,
+        {[name] : value}
+      )})
+      console.log(this.state)
   }
   render() {
   return (
     <div className="App">
       Informacion Personal
       <GeneralInfo saveGeneralInfo={this.saveGeneralInfo}/>
-      <StudiesInfo />
-      <WorkInfo />
+      Estudios
+      <StudiesInfo saveStudiesInfo={this.saveStudiesInfo}/>
+      Experiencia laboral
+      <WorkInfo saveWorkInfo={this.saveWorkInfo}/>
     </div>
   );
 }
