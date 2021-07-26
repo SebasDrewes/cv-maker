@@ -13,18 +13,34 @@ class App extends React.Component{
         lastName: '',
         title: '',
         photo: '',
-        addres: '',
+        address: '',
         phoneNumber: '',
         email: '',
         description: '',
       }
     }
+    this.saveGeneralInfo = this.saveGeneralInfo.bind(this)
+  }
+  saveGeneralInfo(e) {
+    const target = e.target
+    const value = target.value
+    const name = target.name
+    this.setState({
+      generalInfo: this.state.generalInfo.map((info) => {
+        if(info.name === name) {
+          return info = value;
+        } else {
+          return info
+        }
+      })
+    })
+    console.log(this.state)
   }
   render() {
   return (
     <div className="App">
       Informacion Personal
-      <GeneralInfo generalInfo={this.state.generalInfo}/>
+      <GeneralInfo saveGeneralInfo={this.saveGeneralInfo}/>
       <StudiesInfo />
       <WorkInfo />
     </div>
