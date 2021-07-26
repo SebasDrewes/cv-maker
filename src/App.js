@@ -8,7 +8,7 @@ class App extends React.Component{
   constructor(){
     super()
     this.state = {
-      personalInfo: {
+      generalInfo: {
         firstName: '',
         lastName: '',
         title: '',
@@ -24,7 +24,7 @@ class App extends React.Component{
   return (
     <div className="App">
       Informacion Personal
-      <GeneralInfo />
+      <GeneralInfo generalInfo={this.state.generalInfo}/>
       <StudiesInfo />
       <WorkInfo />
     </div>
