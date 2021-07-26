@@ -22,18 +22,16 @@ class App extends React.Component{
     this.saveGeneralInfo = this.saveGeneralInfo.bind(this)
   }
   saveGeneralInfo(e) {
+    e.preventDefault();
     const target = e.target
     const value = target.value
     const name = target.name
     this.setState({
-      generalInfo: this.state.generalInfo.map((info) => {
-        if(info.name === name) {
-          return info = value;
-        } else {
-          return info
-        }
-      })
-    })
+      generalInfo: Object.assign(
+        {},
+        this.state.generalInfo,
+        {[name] : value}
+      )})
     console.log(this.state)
   }
   render() {
