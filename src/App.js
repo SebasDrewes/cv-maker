@@ -18,6 +18,8 @@ class App extends React.Component{
         email: '',
         description: '',
       },
+      studiesList : [],
+
       studiesInfo: {
         institute: '',
         title: '',
@@ -35,6 +37,7 @@ class App extends React.Component{
     this.saveGeneralInfo = this.saveGeneralInfo.bind(this)
     this.saveStudiesInfo = this.saveStudiesInfo.bind(this)
     this.saveWorkInfo = this.saveWorkInfo.bind(this)
+    this.addStudies = this.addStudies.bind(this)
   }
   saveGeneralInfo(e) {
     e.preventDefault();
@@ -75,13 +78,18 @@ class App extends React.Component{
       )})
       console.log(this.state)
   }
+  addStudies(){
+    console.log(this.state.studiesList)
+    this.state.studiesList.concat(<StudiesInfo saveStudiesInfo={this.saveStudiesInfo}/>)
+  }
   render() {
   return (
     <div className="App">
       Informacion Personal
       <GeneralInfo saveGeneralInfo={this.saveGeneralInfo}/>
       Estudios
-      <StudiesInfo saveStudiesInfo={this.saveStudiesInfo}/>
+      {this.state.studiesList}
+      <button onClick={this.addStudies}>Agregar Estudios</button>
       Experiencia laboral
       <WorkInfo saveWorkInfo={this.saveWorkInfo}/>
     </div>
