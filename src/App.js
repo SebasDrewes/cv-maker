@@ -5,8 +5,8 @@ import StudiesInfo from './components/StudiesInfo'
 import WorkInfo from './components/WorkInfo'
 
 class App extends React.Component{
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
       generalInfo: {
         firstName: '',
@@ -18,7 +18,7 @@ class App extends React.Component{
         email: '',
         description: '',
       },
-      studiesAmount : 1,
+      studiesList : [],
 
       studiesInfo: {
         institute: '',
@@ -52,7 +52,7 @@ class App extends React.Component{
       )})
       console.log(this.state)
   }
-  saveStudiesInfo(e) {
+  saveStudiesInfo(e, number) {
     e.preventDefault();
     const target = e.target
     const value = target.value
@@ -79,16 +79,18 @@ class App extends React.Component{
       console.log(this.state)
   }
   addStudies(){
+    console.log(this.state.studiesList)
+    if (this.state.studiesList.length < 5)
     this.setState({
-      studiesAmount: this.state.studiesAmount + 1
+      studiesList: this.state.studiesList.concat(this.state.studiesInfo)
     })
   }
   displayStudies(){
     let studies = [];
-    for(let i = 0; i < this.state.studiesAmount; i++){
+    for(let i = 1; i < this.state.studiesList.length; i++){
               studies.push(
               <div key={i}>
-                  <StudiesInfo/>
+                  <StudiesInfo saveStudiesInfo={this.saveStudiesInfo} number={i}/>
               </div>
            )
     }
