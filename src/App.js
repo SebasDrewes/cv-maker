@@ -18,7 +18,7 @@ class App extends React.Component{
         email: '',
         description: '',
       },
-      studiesList : [],
+      studiesAmount : 1,
 
       studiesInfo: {
         institute: '',
@@ -79,16 +79,28 @@ class App extends React.Component{
       console.log(this.state)
   }
   addStudies(){
-    console.log(this.state.studiesList)
-    this.state.studiesList.concat(<StudiesInfo saveStudiesInfo={this.saveStudiesInfo}/>)
+    this.setState({
+      studiesAmount: this.state.studiesAmount + 1
+    })
   }
+  displayStudies(){
+    let studies = [];
+    for(let i = 0; i < this.state.studiesAmount; i++){
+              studies.push(
+              <div key={i}>
+                  <StudiesInfo/>
+              </div>
+           )
+    }
+    return studies || null;
+ }
   render() {
   return (
     <div className="App">
       Informacion Personal
       <GeneralInfo saveGeneralInfo={this.saveGeneralInfo}/>
       Estudios
-      {this.state.studiesList}
+      {this.displayStudies()}
       <button onClick={this.addStudies}>Agregar Estudios</button>
       Experiencia laboral
       <WorkInfo saveWorkInfo={this.saveWorkInfo}/>
