@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import uniqid from "uniqid";
 import GeneralInfo from './components/GeneralInfo'
 import StudiesInfo from './components/StudiesInfo'
 import WorkInfo from './components/WorkInfo'
@@ -25,6 +26,7 @@ class App extends React.Component{
         title: '',
         from: '',
         to: '',
+        id: uniqid(),
       },
       workInfo: {
         position: '',
@@ -52,19 +54,20 @@ class App extends React.Component{
       )})
       console.log(this.state)
   }
-  saveStudiesInfo(e, number) {
+  saveStudiesInfo(e, id) {
     e.preventDefault();
     const target = e.target
     const value = target.value
     const name = target.name
     this.setState({
-      studiesInfo: Object.assign(
-        {},
-        this.state.studiesInfo,
-        {[name] : value}
-      )})
-      console.log(this.state)
-  }
+      studiesList: this.state.studiesList.map((study) => {
+        if (study.id === id) {
+          return study[name] = value;
+        } else {
+          return study
+        };
+      })
+  })};
   saveWorkInfo(e) {
     e.preventDefault();
     const target = e.target
@@ -82,15 +85,23 @@ class App extends React.Component{
     console.log(this.state.studiesList)
     if (this.state.studiesList.length < 5)
     this.setState({
+      studiesInfo: {
+        institute: '',
+        title: '',
+        from: '',
+        to: '',
+        id: uniqid(),
+      },
       studiesList: this.state.studiesList.concat(this.state.studiesInfo)
     })
   }
   displayStudies(){
     let studies = [];
-    for(let i = 1; i < this.state.studiesList.length; i++){
+    for(let i = 0; i < this.state.studiesList.length; i++){
+      const id = this.state.studiesList[i].id
               studies.push(
-              <div key={i}>
-                  <StudiesInfo saveStudiesInfo={this.saveStudiesInfo} number={i}/>
+              <div key={`div${id}`}>
+                  <StudiesInfo saveStudiesInfo={this.saveStudiesInfo} id={id}/>
               </div>
            )
     }
