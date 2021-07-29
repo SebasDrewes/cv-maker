@@ -19,28 +19,36 @@ class App extends React.Component{
       email: '',
       description: '',
       },
+      
+      showStudyInfo: false,
+
       studiesInfo:{
-      //studies info
       institute: '',
-      studyTitle: '',
-      fromStudy: '',
-      toStudy: '',
-      idStudy: uniqid(),
+      title: '',
+      from: '',
+      to: '',
+      id: uniqid(),
       },
+
       studiesList: [],
+
       workInfo:{
-      //work info
       position: '',
       company: '',
       city: '',
-      fromWork: '',
-      toWork: '',
-      idWork: uniqid(),
+      fro: '',
+      to: '',
+      id: uniqid(),
       },
+      
       workList: [],
     }
     this.saveGeneralInfo = this.saveGeneralInfo.bind(this)
-    this.addStudies = this.addStudies.bind(this)
+    this.saveStudiesInfo = this.saveStudiesInfo.bind(this)
+    this.addStudy = this.addStudy.bind(this)
+    this.displayStudyForm = this.displayStudyForm.bind(this)
+    this.studyForm = this.studyForm.bind(this)
+    this.displayStudyButton = this.displayStudyButton.bind(this)
   }
   saveGeneralInfo(e) {
     e.preventDefault();
@@ -56,11 +64,26 @@ class App extends React.Component{
       })
       console.log(this.state)
   }
+  saveStudiesInfo(e) {
+    e.preventDefault();
+    const target = e.target
+    const value = target.value
+    const name = target.name
+    this.setState({
+      studiesInfo: Object.assign(
+        {},
+        this.state.studiesInfo,
+        {[name] : value}
+      )
+      })
+      console.log(this.state)
+  }
 
-  addStudies(){
+  addStudy(){
     console.log(this.state.studiesList)
     if (this.state.studiesList.length < 5)
     this.setState({
+      showStudyInfo: false,
       studiesInfo: {
         institute: '',
         title: '',
@@ -71,6 +94,7 @@ class App extends React.Component{
       studiesList: this.state.studiesList.concat(this.state.studiesInfo)
     })
   }
+  /*
   displayStudies(){
     let studies = [];
     for(let i = 0; i < this.state.studiesList.length; i++){
@@ -82,15 +106,38 @@ class App extends React.Component{
            )
     }
     return studies || null;
+ }*/
+ studyForm(){
+   if (this.state.showStudyInfo)
+    return <StudiesInfo saveStudiesInfo={this.saveStudiesInfo}/> || null;
  }
+ displayStudyForm(){
+   if(this.state.showStudyInfo){
+   this.setState({
+    showStudyInfo: false,
+   })
+  } else {
+    this.setState({
+      showStudyInfo: true,
+    })
+  }
+ }
+ displayStudyButton(){
+  if(this.state.showStudyInfo){
+    return <button onClick={this.addStudy}>Guardiar estudio</button>
+   } else {
+    return <button onClick={this.displayStudyForm}>Agregar Estudios</button>
+   }
+  }
+
   render() {
   return (
     <div className="App">
       Informacion Personal
       <GeneralInfo saveGeneralInfo={this.saveGeneralInfo}/>
       Estudios
-      {this.displayStudies()}
-      <button onClick={this.addStudies}>Agregar Estudios</button>
+      {this.studyForm()}
+      {this.displayStudyButton()}
       Experiencia laboral
       <WorkInfo saveWorkInfo={this.saveWorkInfo}/>
     </div>
