@@ -9,36 +9,37 @@ class App extends React.Component{
   constructor(props){
     super(props)
     this.state = {
-      generalInfo: {
-        firstName: '',
-        lastName: '',
-        title: '',
-        photo: '',
-        address: '',
-        phoneNumber: '',
-        email: '',
-        description: '',
+      generalInfo:{
+      firstName: '',
+      lastName: '',
+      title: '',
+      photo: '',
+      address: '',
+      phoneNumber: '',
+      email: '',
+      description: '',
       },
-      studiesList : [],
-
-      studiesInfo: {
-        institute: '',
-        title: '',
-        from: '',
-        to: '',
-        id: uniqid(),
+      studiesInfo:{
+      //studies info
+      institute: '',
+      studyTitle: '',
+      fromStudy: '',
+      toStudy: '',
+      idStudy: uniqid(),
       },
-      workInfo: {
-        position: '',
-        company: '',
-        city: '',
-        from: '',
-        to: '',
-      }
+      studiesList: [],
+      workInfo:{
+      //work info
+      position: '',
+      company: '',
+      city: '',
+      fromWork: '',
+      toWork: '',
+      idWork: uniqid(),
+      },
+      workList: [],
     }
     this.saveGeneralInfo = this.saveGeneralInfo.bind(this)
-    this.saveStudiesInfo = this.saveStudiesInfo.bind(this)
-    this.saveWorkInfo = this.saveWorkInfo.bind(this)
     this.addStudies = this.addStudies.bind(this)
   }
   saveGeneralInfo(e) {
@@ -51,36 +52,11 @@ class App extends React.Component{
         {},
         this.state.generalInfo,
         {[name] : value}
-      )})
-      console.log(this.state)
-  }
-  saveStudiesInfo(e, id) {
-    e.preventDefault();
-    const target = e.target
-    const value = target.value
-    const name = target.name
-    this.setState({
-      studiesList: this.state.studiesList.map((study) => {
-        if (study.id === id) {
-          return study[name] = value;
-        } else {
-          return study
-        };
+      )
       })
-  })};
-  saveWorkInfo(e) {
-    e.preventDefault();
-    const target = e.target
-    const value = target.value
-    const name = target.name
-    this.setState({
-      workInfo: Object.assign(
-        {},
-        this.state.workInfo,
-        {[name] : value}
-      )})
       console.log(this.state)
   }
+
   addStudies(){
     console.log(this.state.studiesList)
     if (this.state.studiesList.length < 5)
@@ -98,10 +74,10 @@ class App extends React.Component{
   displayStudies(){
     let studies = [];
     for(let i = 0; i < this.state.studiesList.length; i++){
-      const id = this.state.studiesList[i].id
+      const id = this.state.studiesList[i].idStudy
               studies.push(
               <div key={`div${id}`}>
-                  <StudiesInfo saveStudiesInfo={this.saveStudiesInfo} id={id}/>
+                  <StudiesInfo saveStudiesInfo={this.saveInfo} id={id}/>
               </div>
            )
     }
