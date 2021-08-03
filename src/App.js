@@ -32,6 +32,8 @@ class App extends React.Component{
 
       studiesList: [],
 
+      showWorkInfo: false,
+
       workInfo:{
       position: '',
       company: '',
@@ -45,10 +47,15 @@ class App extends React.Component{
     }
     this.saveGeneralInfo = this.saveGeneralInfo.bind(this)
     this.saveStudiesInfo = this.saveStudiesInfo.bind(this)
+    this.saveWorkInfo = this.saveWorkInfo.bind(this)
     this.addStudy = this.addStudy.bind(this)
     this.displayStudyForm = this.displayStudyForm.bind(this)
     this.studyForm = this.studyForm.bind(this)
     this.displayStudyButton = this.displayStudyButton.bind(this)
+    this.displayWorkButton = this.displayWorkButton.bind(this)
+    this.addWork = this.addWork.bind(this)
+    this.displayWorkForm = this.displayWorkForm.bind(this)
+    this.workForm = this.workForm.bind(this)
   }
   saveGeneralInfo(e) {
     e.preventDefault();
@@ -78,7 +85,20 @@ class App extends React.Component{
       })
       console.log(this.state)
   }
-
+  saveWorkInfo(e) {
+    e.preventDefault();
+    const target = e.target
+    const value = target.value
+    const name = target.name
+    this.setState({
+      workInfo: Object.assign(
+        {},
+        this.state.workInfo,
+        {[name] : value}
+      )
+      })
+      console.log(this.state)
+  }
   addStudy(){
     console.log(this.state.studiesList)
     if (this.state.studiesList.length < 5)
@@ -92,6 +112,21 @@ class App extends React.Component{
         id: uniqid(),
       },
       studiesList: this.state.studiesList.concat(this.state.studiesInfo)
+    })
+  }
+  addWork(){
+    console.log(this.state.workList)
+    if (this.state.workList.length < 5)
+    this.setState({
+      showWorkInfo: false,
+      workInfo: {
+        institute: '',
+        title: '',
+        from: '',
+        to: '',
+        id: uniqid(),
+      },
+      workList: this.state.workList.concat(this.state.workInfo)
     })
   }
   /*
@@ -122,13 +157,36 @@ class App extends React.Component{
     })
   }
  }
- displayStudyButton(){
-  if(this.state.showStudyInfo){
-    return <button onClick={this.addStudy}>Guardiar estudio</button>
+  workForm(){
+    if (this.state.showWorkInfo)
+     return <WorkInfo saveWorkInfo={this.saveWorkInfo}/> || null;
+  }
+  displayWorkForm(){
+    if(this.state.showWorknfo){
+    this.setState({
+     showWorkInfo: false,
+    })
    } else {
-    return <button onClick={this.displayStudyForm}>Agregar Estudios</button>
+     this.setState({
+       showWorkInfo: true,
+     })
    }
   }
+  displayStudyButton(){
+   if(this.state.showStudyInfo){
+     return <button onClick={this.addStudy}>Guardiar estudio</button>
+    } else {
+     return <button onClick={this.displayStudyForm}>Agregar Estudios</button>
+    }
+   }
+   displayWorkButton(){
+    if(this.state.showWorkInfo){
+      return <button onClick={this.addWork}>Guardar Trabajo</button>
+     } else {
+      return <button onClick={this.displayWorkForm}>Agregar Trabajo</button>
+     }
+    }
+ 
 
   render() {
   return (
@@ -139,7 +197,8 @@ class App extends React.Component{
       {this.studyForm()}
       {this.displayStudyButton()}
       Experiencia laboral
-      <WorkInfo saveWorkInfo={this.saveWorkInfo}/>
+      {this.workForm()}
+      {this.displayWorkButton()}
     </div>
   );
 }
