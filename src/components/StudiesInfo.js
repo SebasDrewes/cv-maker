@@ -1,14 +1,16 @@
-import React from 'react'
+import React from 'react';
 
-export default function StudiesInfo({saveStudiesInfo}) {
-    return (
-        <div>
-            <form>
-                <input type="text" name="institute" placeholder="Nombre del Instituto" onChange={saveStudiesInfo}></input>
-                <input type="text" name="title" placeholder="Titulo" onChange={saveStudiesInfo}></input>
-                <input type="text" name="from" placeholder="Desde"onChange={saveStudiesInfo}></input>
-                <input type="text" name="to" placeholder="Hasta" onChange={saveStudiesInfo}></input>
-            </form>
-        </div>
-    )
+// eslint-disable-next-line react/prop-types
+export default function StudiesInfo({ saveStudiesInfo }) {
+  return (
+    // eslint-disable-next-line react/jsx-filename-extension
+    <div>
+      <form>
+        <input type="text" name="institute" placeholder="Nombre del Instituto" onChange={saveStudiesInfo} />
+        <input type="text" name="title" placeholder="Titulo" onChange={saveStudiesInfo} />
+        <input type="text" name="from" placeholder="Desde" onChange={saveStudiesInfo} />
+        <input type="text" name="to" placeholder="Hasta" onChange={saveStudiesInfo} />
+      </form>
+    </div>
+  );
 }

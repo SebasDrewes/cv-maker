@@ -1,18 +1,20 @@
-import React from 'react'
+import React from 'react';
 
-export default function GeneralInfo({saveGeneralInfo}) {
-    return (
-        <div>
-            <form>
-                <input type="text" name="firstName" placeholder="Nombre" onChange={saveGeneralInfo}></input>
-                <input type="text" name="lastName" placeholder="Apellido" onChange={saveGeneralInfo}></input>
-                <input type="text" name="title" placeholder="Titulo" onChange={saveGeneralInfo}></input>
-                <input type="file" name="photo" placeholder="Foto"></input>
-                <input type="text" name="address" placeholder="Direccion" onChange={saveGeneralInfo}></input>
-                <input type="tel" name="phoneNumber" placeholder="Telefono" onChange={saveGeneralInfo}></input>
-                <input type="email" name="email" placeholder="Email" onChange={saveGeneralInfo}></input>
-                <input type="text" name="description" placeholder="Descripcion" onChange={saveGeneralInfo}></input>
-            </form>
-        </div>
-    )
+// eslint-disable-next-line react/prop-types
+export default function GeneralInfo({ saveGeneralInfo }) {
+  return (
+    // eslint-disable-next-line react/jsx-filename-extension
+    <div>
+      <form>
+        <input type="text" name="firstName" placeholder="Nombre" onChange={saveGeneralInfo} />
+        <input type="text" name="lastName" placeholder="Apellido" onChange={saveGeneralInfo} />
+        <input type="text" name="title" placeholder="Titulo" onChange={saveGeneralInfo} />
+        <input type="file" name="photo" placeholder="Foto" />
+        <input type="text" name="address" placeholder="Direccion" onChange={saveGeneralInfo} />
+        <input type="tel" name="phoneNumber" placeholder="Telefono" onChange={saveGeneralInfo} />
+        <input type="email" name="email" placeholder="Email" onChange={saveGeneralInfo} />
+        <input type="text" name="description" placeholder="Descripcion" onChange={saveGeneralInfo} />
+      </form>
+    </div>
+  );
 }

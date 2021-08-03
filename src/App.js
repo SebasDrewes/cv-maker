@@ -1,3 +1,8 @@
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable consistent-return */
+/* eslint-disable no-console */
+/* eslint-disable react/no-access-state-in-setstate */
+/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import './App.css';
 import uniqid from 'uniqid';
@@ -137,19 +142,6 @@ class App extends React.Component {
     }
   }
 
-  /*
-  displayStudies(){
-    let studies = [];
-    for(let i = 0; i < this.state.studiesList.length; i++){
-      const id = this.state.studiesList[i].idStudy
-              studies.push(
-              <div key={`div${id}`}>
-                  <StudiesInfo saveStudiesInfo={this.saveInfo} id={id}/>
-              </div>
-           )
-    }
-    return studies || null;
- } */
   studyForm() {
     if (this.state.showStudyInfo) {
       return <StudiesInfo saveStudiesInfo={this.saveStudiesInfo} /> || null;
@@ -186,16 +178,48 @@ class App extends React.Component {
 
   displayStudyButton() {
     if (this.state.showStudyInfo) {
-      return <button onClick={this.addStudy}>Guardiar estudio</button>;
+      return <button onClick={this.addStudy} type="button">Guardiar estudio</button>;
     }
-    return <button onClick={this.displayStudyForm}>Agregar Estudios</button>;
+    return <button onClick={this.displayStudyForm} type="button">Agregar Estudios</button>;
   }
 
   displayWorkButton() {
     if (this.state.showWorkInfo) {
-      return <button onClick={this.addWork}>Guardar Trabajo</button>;
+      return <button onClick={this.addWork} type="button">Guardar Trabajo</button>;
     }
-    return <button onClick={this.displayWorkForm}>Agregar Trabajo</button>;
+    return <button onClick={this.displayWorkForm} type="button">Agregar Trabajo</button>;
+  }
+
+  studyList() {
+    const studies = [];
+    for (let i = 0; i < this.state.studiesList.length; i += 1) {
+      const id = this.state.studiesList[i].idStudy;
+      studies.push(
+        <div key={`div${id}`}>
+          <p id={`institute${id}`}>
+            Instituto:
+            {' '}
+            {this.state.studiesList[i].institute}
+          </p>
+          <p id={`title${id}`}>
+            Titulo:
+            {' '}
+            {this.state.studiesList[i].title}
+          </p>
+          <p id={`from${id}`}>
+            Desde:
+            {' '}
+            {this.state.studiesList[i].from}
+          </p>
+          <p id={`to${id}`}>
+            Hasta:
+            {' '}
+            {this.state.studiesList[i].to}
+          </p>
+        </div>,
+      );
+    }
+    return studies || null;
   }
 
   render() {
@@ -204,6 +228,7 @@ class App extends React.Component {
         Informacion Personal
         <GeneralInfo saveGeneralInfo={this.saveGeneralInfo} />
         Estudios
+        {this.studyList()}
         {this.studyForm()}
         {this.displayStudyButton()}
         Experiencia laboral
