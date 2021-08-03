@@ -43,7 +43,7 @@ class App extends React.Component {
         position: '',
         company: '',
         city: '',
-        fro: '',
+        from: '',
         to: '',
         id: uniqid(),
       },
@@ -193,25 +193,25 @@ class App extends React.Component {
   studyList() {
     const studies = [];
     for (let i = 0; i < this.state.studiesList.length; i += 1) {
-      const id = this.state.studiesList[i].idStudy;
+      const { id } = this.state.studiesList[i];
       studies.push(
         <div key={`div${id}`}>
-          <p id={`institute${id}`}>
+          <p key={`institute${id}`}>
             Instituto:
             {' '}
             {this.state.studiesList[i].institute}
           </p>
-          <p id={`title${id}`}>
+          <p key={`title${id}`}>
             Titulo:
             {' '}
             {this.state.studiesList[i].title}
           </p>
-          <p id={`from${id}`}>
+          <p key={`from${id}`}>
             Desde:
             {' '}
             {this.state.studiesList[i].from}
           </p>
-          <p id={`to${id}`}>
+          <p key={`to${id}`}>
             Hasta:
             {' '}
             {this.state.studiesList[i].to}
@@ -220,6 +220,43 @@ class App extends React.Component {
       );
     }
     return studies || null;
+  }
+
+  workList() {
+    const works = [];
+    for (let i = 0; i < this.state.workList.length; i += 1) {
+      const { id } = this.state.workList[i];
+      works.push(
+        <div key={`div${id}`}>
+          <p key={`position:${id}`}>
+            Posicion:
+            {' '}
+            {this.state.workList[i].position}
+          </p>
+          <p key={`company${id}`}>
+            Compañía:
+            {' '}
+            {this.state.workList[i].company}
+          </p>
+          <p key={`city${id}`}>
+            Ciudad:
+            {' '}
+            {this.state.workList[i].city}
+          </p>
+          <p key={`from${id}`}>
+            Desde:
+            {' '}
+            {this.state.workList[i].from}
+          </p>
+          <p key={`to${id}`}>
+            Hasta:
+            {' '}
+            {this.state.workList[i].to}
+          </p>
+        </div>,
+      );
+    }
+    return works || null;
   }
 
   render() {
@@ -232,6 +269,7 @@ class App extends React.Component {
         {this.studyForm()}
         {this.displayStudyButton()}
         Experiencia laboral
+        {this.workList()}
         {this.workForm()}
         {this.displayWorkButton()}
       </div>
