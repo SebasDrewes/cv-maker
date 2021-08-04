@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/button-has-type */
 /* eslint-disable react/jsx-filename-extension */
 /* eslint-disable consistent-return */
 /* eslint-disable no-console */
@@ -61,6 +63,8 @@ class App extends React.Component {
     this.addWork = this.addWork.bind(this);
     this.displayWorkForm = this.displayWorkForm.bind(this);
     this.workForm = this.workForm.bind(this);
+    this.removeWork = this.removeWork.bind(this);
+    this.removeStudy = this.removeStudy.bind(this);
   }
 
   saveGeneralInfo(e) {
@@ -190,6 +194,18 @@ class App extends React.Component {
     return <button onClick={this.displayWorkForm} type="button">Agregar Trabajo</button>;
   }
 
+  removeStudy(id) {
+    this.setState({
+      studiesList: this.state.studiesList.filter(((study) => study.id !== id)),
+    });
+  }
+
+  removeWork(id) {
+    this.setState({
+      workList: this.state.workList.filter(((work) => work.id !== id)),
+    });
+  }
+
   studyList() {
     const studies = [];
     for (let i = 0; i < this.state.studiesList.length; i += 1) {
@@ -216,6 +232,7 @@ class App extends React.Component {
             {' '}
             {this.state.studiesList[i].to}
           </p>
+          <button onClick={(e) => this.removeStudy(id)}>X</button>
         </div>,
       );
     }
@@ -253,6 +270,7 @@ class App extends React.Component {
             {' '}
             {this.state.workList[i].to}
           </p>
+          <button onClick={(e) => this.removeWork(id)}>X</button>
         </div>,
       );
     }
@@ -262,16 +280,19 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        Informacion Personal
-        <GeneralInfo saveGeneralInfo={this.saveGeneralInfo} />
-        Estudios
-        {this.studyList()}
-        {this.studyForm()}
-        {this.displayStudyButton()}
-        Experiencia laboral
-        {this.workList()}
-        {this.workForm()}
-        {this.displayWorkButton()}
+        <h1 id="title">CV Maker</h1>
+        <div className="container">
+          Informacion Personal
+          <GeneralInfo saveGeneralInfo={this.saveGeneralInfo} />
+          Estudios
+          {this.studyList()}
+          {this.studyForm()}
+          {this.displayStudyButton()}
+          Experiencia laboral
+          {this.workList()}
+          {this.workForm()}
+          {this.displayWorkButton()}
+        </div>
       </div>
     );
   }
