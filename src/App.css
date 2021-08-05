@@ -13,13 +13,34 @@
   align-items: center;
   justify-content: center;
   width: 60vw;
+  margin-top: 5vh;
   margin-left: 20vw;
   border: 1px solid grey; 
   border-radius: 0.3em;
   box-shadow:2px 2px grey;
+  background-color: rgb(233, 232, 232);
 }
 form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: auto;
+}
+input{
+  width: 58vw;
+  height: 5vh;
+  margin: 1vh;
+  border: hidden;
+  font-size: 1em;
+  border-radius: 0.5em;
+}
+.list {
+  display:flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 90%;
+}
+.subtitle {
+  text-decoration: underline;
+  font-size: 2em;
 }

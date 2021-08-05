@@ -211,7 +211,7 @@ class App extends React.Component {
     for (let i = 0; i < this.state.studiesList.length; i += 1) {
       const { id } = this.state.studiesList[i];
       studies.push(
-        <div key={`div${id}`}>
+        <div className="list" key={`div${id}`}>
           <p key={`institute${id}`}>
             Instituto:
             {' '}
@@ -244,7 +244,7 @@ class App extends React.Component {
     for (let i = 0; i < this.state.workList.length; i += 1) {
       const { id } = this.state.workList[i];
       works.push(
-        <div key={`div${id}`}>
+        <div className="list" key={`div${id}`}>
           <p key={`position:${id}`}>
             Posicion:
             {' '}
@@ -282,13 +282,13 @@ class App extends React.Component {
       <div className="App">
         <h1 id="title">CV Maker</h1>
         <div className="container">
-          Informacion Personal
+          <p className="subtitle">Informacion Personal</p>
           <GeneralInfo saveGeneralInfo={this.saveGeneralInfo} />
-          Estudios
+          <p className="subtitle">Estudios</p>
           {this.studyList()}
           {this.studyForm()}
           {this.displayStudyButton()}
-          Experiencia laboral
+          <p className="subtitle">Experiencia laboral</p>
           {this.workList()}
           {this.workForm()}
           {this.displayWorkButton()}
