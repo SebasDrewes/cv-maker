@@ -20,13 +20,12 @@ class App extends React.Component {
         firstName: '',
         lastName: '',
         title: '',
-        photo: '',
         address: '',
         phoneNumber: '',
         email: '',
         description: '',
       },
-
+      photo: '',
       showStudyInfo: false,
 
       studiesInfo: {
@@ -65,6 +64,7 @@ class App extends React.Component {
     this.workForm = this.workForm.bind(this);
     this.removeWork = this.removeWork.bind(this);
     this.removeStudy = this.removeStudy.bind(this);
+    this.imageUpload = this.imageUpload.bind(this);
   }
 
   saveGeneralInfo(e) {
@@ -94,6 +94,16 @@ class App extends React.Component {
         [name]: value,
       },
     });
+    console.log(this.state);
+  }
+
+  imageUpload(e) {
+    if (e.target.files && e.target.files[0]) {
+      const img = e.target.files[0];
+      this.setState({
+        photo: URL.createObjectURL(img),
+      });
+    }
     console.log(this.state);
   }
 
@@ -189,9 +199,9 @@ class App extends React.Component {
 
   displayWorkButton() {
     if (this.state.showWorkInfo) {
-      return <button onClick={this.addWork} type="button">Guardar Trabajo</button>;
+      return <button onClick={this.addWork} type="button">Guardar Experiencia</button>;
     }
-    return <button onClick={this.displayWorkForm} type="button">Agregar Trabajo</button>;
+    return <button onClick={this.displayWorkForm} type="button">Agregar Experiencia</button>;
   }
 
   removeStudy(id) {
@@ -232,7 +242,7 @@ class App extends React.Component {
             {' '}
             {this.state.studiesList[i].to}
           </p>
-          <button onClick={(e) => this.removeStudy(id)}>X</button>
+          <button onClick={(e) => this.removeStudy(id)}>Borrar Estudio</button>
         </div>,
       );
     }
@@ -270,7 +280,7 @@ class App extends React.Component {
             {' '}
             {this.state.workList[i].to}
           </p>
-          <button onClick={(e) => this.removeWork(id)}>X</button>
+          <button onClick={(e) => this.removeWork(id)}>Borrar Experiencia</button>
         </div>,
       );
     }
@@ -283,7 +293,7 @@ class App extends React.Component {
         <h1 id="title">CV Maker</h1>
         <div className="container">
           <p className="subtitle">Informacion Personal</p>
-          <GeneralInfo saveGeneralInfo={this.saveGeneralInfo} />
+          <GeneralInfo saveGeneralInfo={this.saveGeneralInfo} savePhoto={this.imageUpload} />
           <p className="subtitle">Estudios</p>
           {this.studyList()}
           {this.studyForm()}
@@ -292,6 +302,7 @@ class App extends React.Component {
           {this.workList()}
           {this.workForm()}
           {this.displayWorkButton()}
+          <img src={this.state.photo} alt="face" />
         </div>
       </div>
     );
