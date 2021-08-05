@@ -11,6 +11,7 @@ import uniqid from 'uniqid';
 import GeneralInfo from './components/GeneralInfo';
 import StudiesInfo from './components/StudiesInfo';
 import WorkInfo from './components/WorkInfo';
+import Preview from './components/Preview';
 
 class App extends React.Component {
   constructor(props) {
@@ -303,6 +304,7 @@ class App extends React.Component {
           {this.workForm()}
           {this.displayWorkButton()}
           <img src={this.state.photo} alt="face" />
+          <Preview allInfo={this.state} />
         </div>
       </div>
     );
