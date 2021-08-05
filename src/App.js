@@ -303,7 +303,6 @@ class App extends React.Component {
           {this.workList()}
           {this.workForm()}
           {this.displayWorkButton()}
-          <img src={this.state.photo} alt="face" />
           <Preview allInfo={this.state} />
         </div>
       </div>
