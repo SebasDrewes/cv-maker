@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-filename-extension */
 /* eslint-disable react/prop-types */
 import React from 'react';
-
+// eslint-disable-next-line import/no-self-import
+import './Preview.css';
 // eslint-disable-next-line react/prop-types
 export default function Preview({ allInfo }) {
   // def elementos general
@@ -10,7 +11,10 @@ export default function Preview({ allInfo }) {
     phoneNumber, email, description,
   } = allInfo.generalInfo;
 
-  const { photo } = allInfo;
+  let { photo } = allInfo;
+  if (photo === '') {
+    photo = `${process.env.PUBLIC_URL}/emptyAvatar.png`;
+  }
 
   function displayStudiesList() {
     const studies = [];
@@ -84,7 +88,7 @@ export default function Preview({ allInfo }) {
         </p>
       </div>
       <div id="previewContact">
-        <img src={photo} alt="face" />
+        <img src={photo} alt="avatar" id="avatar" />
         <p className="previewSubtitle">
           Detalles Personales
         </p>
