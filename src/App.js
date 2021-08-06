@@ -223,24 +223,16 @@ class App extends React.Component {
       const { id } = this.state.studiesList[i];
       studies.push(
         <div className="list" key={`div${id}`}>
-          <p key={`institute${id}`}>
-            Instituto:
-            {' '}
+          <p className="confirmedInput" key={`institute${id}`}>
             {this.state.studiesList[i].institute}
           </p>
-          <p key={`title${id}`}>
-            Titulo:
-            {' '}
+          <p className="confirmedInput" key={`title${id}`}>
             {this.state.studiesList[i].title}
           </p>
-          <p key={`from${id}`}>
-            Desde:
-            {' '}
+          <p className="confirmedInput" key={`from${id}`}>
             {this.state.studiesList[i].from}
           </p>
-          <p key={`to${id}`}>
-            Hasta:
-            {' '}
+          <p className="confirmedInput" key={`to${id}`}>
             {this.state.studiesList[i].to}
           </p>
           <button onClick={(e) => this.removeStudy(id)}>Borrar Estudio</button>
@@ -256,29 +248,19 @@ class App extends React.Component {
       const { id } = this.state.workList[i];
       works.push(
         <div className="list" key={`div${id}`}>
-          <p key={`position:${id}`}>
-            Posicion:
-            {' '}
+          <p className="confirmedInput" key={`position:${id}`}>
             {this.state.workList[i].position}
           </p>
-          <p key={`company${id}`}>
-            Compañía:
-            {' '}
+          <p className="confirmedInput" key={`company${id}`}>
             {this.state.workList[i].company}
           </p>
-          <p key={`city${id}`}>
-            Ciudad:
-            {' '}
+          <p className="confirmedInput" key={`city${id}`}>
             {this.state.workList[i].city}
           </p>
-          <p key={`from${id}`}>
-            Desde:
-            {' '}
+          <p className="confirmedInput" key={`from${id}`}>
             {this.state.workList[i].from}
           </p>
-          <p key={`to${id}`}>
-            Hasta:
-            {' '}
+          <p className="confirmedInput" key={`to${id}`}>
             {this.state.workList[i].to}
           </p>
           <button onClick={(e) => this.removeWork(id)}>Borrar Experiencia</button>
