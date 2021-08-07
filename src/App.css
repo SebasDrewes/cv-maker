@@ -75,15 +75,22 @@ p {
 }*/
 button {
   width: 58vw;
-  height: 5vh;
+  height: 7vh;
   margin: 1vh;
   border: hidden;
-  font-size: 1em;
   border-radius: 0.5em;
   cursor: pointer;
   color: white;
   background-color: rgb(16, 29, 100);
   font-family: 'Nunito', serif;
+  font-size: 1em;
+  font-weight: bold;
+}
+.borrar {
+  background-color: rgb(100, 16, 16);
+}
+.guardar {
+  background-color: rgb(16, 100, 68);
 }
 .list {
   display:flex;

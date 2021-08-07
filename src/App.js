@@ -193,14 +193,14 @@ class App extends React.Component {
 
   displayStudyButton() {
     if (this.state.showStudyInfo) {
-      return <button onClick={this.addStudy} type="button">Guardiar estudio</button>;
+      return <button onClick={this.addStudy} type="button" className="guardar">Guardiar estudio</button>;
     }
     return <button onClick={this.displayStudyForm} type="button">Agregar Estudios</button>;
   }
 
   displayWorkButton() {
     if (this.state.showWorkInfo) {
-      return <button onClick={this.addWork} type="button">Guardar Experiencia</button>;
+      return <button onClick={this.addWork} type="button" className="guardar">Guardar Experiencia</button>;
     }
     return <button onClick={this.displayWorkForm} type="button">Agregar Experiencia</button>;
   }
@@ -235,7 +235,7 @@ class App extends React.Component {
           <p className="confirmedInput" key={`to${id}`}>
             {this.state.studiesList[i].to}
           </p>
-          <button onClick={(e) => this.removeStudy(id)}>Borrar Estudio</button>
+          <button onClick={(e) => this.removeStudy(id)} className="borrar">Borrar Estudio</button>
         </div>,
       );
     }
@@ -263,7 +263,7 @@ class App extends React.Component {
           <p className="confirmedInput" key={`to${id}`}>
             {this.state.workList[i].to}
           </p>
-          <button onClick={(e) => this.removeWork(id)}>Borrar Experiencia</button>
+          <button onClick={(e) => this.removeWork(id)} className="borrar">Borrar Experiencia</button>
         </div>,
       );
     }
