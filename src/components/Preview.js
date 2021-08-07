@@ -21,20 +21,16 @@ export default function Preview({ allInfo }) {
     for (let i = 0; i < allInfo.studiesList.length; i += 1) {
       const { id } = allInfo.studiesList[i];
       studies.push(
-        <div className="list" key={`divDisplay${id}`}>
+        <div key={`divDisplay${id}`}>
           <p key={`instituteDisplay${id}`}>
             {allInfo.studiesList[i].institute}
           </p>
           <p key={`titleDisplay${id}`}>
-            Titulo:
-            {' '}
             {allInfo.studiesList[i].title}
           </p>
           <p key={`fromDisplay${id}`}>
             {allInfo.studiesList[i].from}
-            -
-          </p>
-          <p key={`toDisplay${id}`}>
+            {' - '}
             {allInfo.studiesList[i].to}
           </p>
         </div>,
@@ -47,27 +43,21 @@ export default function Preview({ allInfo }) {
     for (let i = 0; i < allInfo.workList.length; i += 1) {
       const { id } = allInfo.workList[i];
       works.push(
-        <div className="list" key={`divDisplay${id}`}>
+        <div key={`divDisplay${id}`}>
           <p key={`positionDisplay${id}`}>
             {allInfo.workList[i].position}
           </p>
           <p key={`companyDisplay${id}`}>
             {allInfo.workList[i].company}
-          </p>
-          <p key={`cityDisplay${id}`}>
-            ,
-            {' '}
+            {', '}
             {allInfo.workList[i].city}
           </p>
           <p key={`fromDisplay${id}`}>
             {allInfo.workList[i].from}
-            -
-          </p>
-          <p key={`toDisplay${id}`}>
-            Hasta:
-            {' '}
+            {' - '}
             {allInfo.workList[i].to}
           </p>
+          <hr />
         </div>,
       );
     }
@@ -78,31 +68,40 @@ export default function Preview({ allInfo }) {
     // eslint-disable-next-line no-console
     <div id="previewContainer">
       <div id="previewMain">
-        <p id="mainFullName">
+        <p id="previewName">
           {firstName}
           {' '}
           {lastName}
         </p>
-        <p id="mainTitle">
+        <p id="previewTitle">
           {title}
         </p>
       </div>
       <div id="previewContact">
-        <img src={photo} alt="avatar" id="avatar" />
+        <div id="flex">
+          <img src={photo} alt="avatar" id="avatar" />
+        </div>
         <p className="previewSubtitle">
           Detalles Personales
         </p>
         <hr />
-        <p id="previewAddress">
+        <p className="previewSubtitle">
           Direccion
+        </p>
+        <p>
           {address}
         </p>
-        <p id="previewPhone">
+
+        <p className="previewSubtitle">
           Celular
+        </p>
+        <p>
           {phoneNumber}
         </p>
-        <p id="previewEmail">
+        <p className="previewSubtitle">
           Email
+        </p>
+        <p>
           {email}
         </p>
       </div>

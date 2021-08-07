@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Nunito', serif;
+  background-color: rgb(172, 172, 172);
 }
 #title {
   display: flex;
@@ -7,6 +9,7 @@ body {
   justify-content: center;
   height: 15vh;
   margin: 0;
+  font-size: 3em;
   color: white;
   background-color: rgb(16, 29, 100);
 }
@@ -36,7 +39,19 @@ input{
   margin: 1.2vh;
   border: hidden;
   font-size: 1em;
+  font-weight: bold;
   border-radius: 0.2em;
+  font-family: 'Nunito', serif;
+}
+textarea {
+  max-width: 58vw;
+  min-width: 58vw;
+  height: 6vh;
+  margin: 1.2vh;
+  border: hidden;
+  font-size: 1em;
+  border-radius: 0.2em;
+  font-family: 'Nunito', serif;
 }
 .confirmedInput {
   display: flex;
@@ -50,13 +65,14 @@ input{
   background-color: white;
   
 }
+/*
 p {
   width: 58vw;
   height: 5vh;
   margin: 1vh;
   border: hidden;
   font-size: 1em;
-}
+}*/
 button {
   width: 58vw;
   height: 5vh;
@@ -67,6 +83,7 @@ button {
   cursor: pointer;
   color: white;
   background-color: rgb(16, 29, 100);
+  font-family: 'Nunito', serif;
 }
 .list {
   display:flex;
@@ -75,17 +92,16 @@ button {
   width: 100%;
 }
 .subtitle {
-  font-size: 1.5em;
+  font-size: 2em;
   margin: 1vh;
   font-weight: bold;
 }
 #previewMainContainer {
-  width: 60vw;
+  width: 61vw;
   margin-top: 5vh;
   margin-left: 20vw;
   border: 1px solid grey; 
   border-radius: 0.3em;
   box-shadow:2px 2px grey;
   background-color: rgb(233, 232, 232);
-  padding: 0.5vw;
 }

@@ -1,27 +1,65 @@
 #avatar{
     width: 12vw;
+    margin: 3vh;
 }
 #previewContainer{
     display: grid;
     margin: 0;
     padding: 0;
     height: auto;
-    width: 60vw;
-    grid-template-columns: 15vw 15vw 15vw 15vw;
+    align-items: start;
+    width: 61vw;
+    grid-template-columns: 15vw 15vw 15vw 16vw;
     grid-template-rows: auto;
     grid-template-areas: "previewMain previewMain previewMain previewMain"
                          "previewDescription previewDescription previewDescription previewContact"
+                         "previewExperience previewExperience previewExperience previewContact"
                          "previewEducation previewEducation previewEducation previewContact"
 }
 #previewMain {
-    grid-area: previewMain
+    grid-area: previewMain;
+    color: white;
+    background-color: rgb(16, 29, 100);
+    height: 22vh;
+    margin: 0;
 }
 #previewDescription {
     grid-area: previewDescription
 }
+#previewName{
+    font-size: 2em;
+    margin: 2.5vh;
+    font-weight: bold;
+}
+#previewTitle {
+    font-size: 1.5em;
+    margin: 2.5vh;
+}
+.previewSubtitle {
+    font-size: 1em;
+    margin: 1vh;
+    font-weight: bold;
+}
 #previewContact {
-    grid-area: previewContact
+    grid-area: previewContact;
+    border-left: 1px solid;
+    height: 100%;
+    background-color: lightgrey;
 }
 #previewEducation {
     grid-area: previewEducation
+}
+#previewExperience {
+    grid-area: previewExperience
+}
+#flex{ 
+    display: flex;
+    justify-content: center;
+  }
+p {
+    overflow-wrap: break-word;
+}
+hr{
+    width: 50%;
+    margin: 0;
 }

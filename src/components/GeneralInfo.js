@@ -13,7 +13,7 @@ export default function GeneralInfo({ saveGeneralInfo, savePhoto }) {
         <input type="text" name="address" placeholder="Direccion" onChange={saveGeneralInfo} />
         <input type="tel" name="phoneNumber" placeholder="Telefono" onChange={saveGeneralInfo} />
         <input type="email" name="email" placeholder="Email" onChange={saveGeneralInfo} />
-        <input type="text" name="description" placeholder="Descripcion" onChange={saveGeneralInfo} />
+        <textarea type="text" name="description" placeholder="Descripcion" onChange={saveGeneralInfo} />
       </form>
     </div>
   );
