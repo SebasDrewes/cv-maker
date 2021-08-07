@@ -277,14 +277,14 @@ class App extends React.Component {
         <div className="container">
           <p className="subtitle">Informacion Personal</p>
           <GeneralInfo saveGeneralInfo={this.saveGeneralInfo} savePhoto={this.imageUpload} />
-          <p className="subtitle">Estudios</p>
-          {this.studyList()}
-          {this.studyForm()}
-          {this.displayStudyButton()}
           <p className="subtitle">Experiencia laboral</p>
           {this.workList()}
           {this.workForm()}
           {this.displayWorkButton()}
+          <p className="subtitle">Estudios</p>
+          {this.studyList()}
+          {this.studyForm()}
+          {this.displayStudyButton()}
           <button type="button" className="pdf">Generar PDF</button>
           <button type="button" className="ejemplo">Cargar Ejemplo</button>
         </div>
