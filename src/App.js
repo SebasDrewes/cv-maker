@@ -285,6 +285,8 @@ class App extends React.Component {
           {this.workList()}
           {this.workForm()}
           {this.displayWorkButton()}
+          <button type="button" className="pdf">Generar PDF</button>
+          <button type="button" className="ejemplo">Cargar Ejemplo</button>
         </div>
         <div id="previewMainContainer">
           <Preview allInfo={this.state} />

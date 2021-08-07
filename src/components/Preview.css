@@ -63,3 +63,12 @@ hr{
     width: 50%;
     margin: 0;
 }
+.contentBold {
+    font-size: 1em;
+    margin: 1vh;
+    font-weight: bold;
+}
+.content {
+    font-size: 1em;
+    margin: 1vh;
+}

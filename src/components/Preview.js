@@ -22,13 +22,13 @@ export default function Preview({ allInfo }) {
       const { id } = allInfo.studiesList[i];
       studies.push(
         <div key={`divDisplay${id}`}>
-          <p key={`instituteDisplay${id}`}>
-            {allInfo.studiesList[i].institute}
-          </p>
-          <p key={`titleDisplay${id}`}>
+          <p key={`titleDisplay${id}`} className="contentBold">
             {allInfo.studiesList[i].title}
           </p>
-          <p key={`fromDisplay${id}`}>
+          <p key={`instituteDisplay${id}`} className="content">
+            {allInfo.studiesList[i].institute}
+          </p>
+          <p key={`fromDisplay${id}`} className="content">
             {allInfo.studiesList[i].from}
             {' - '}
             {allInfo.studiesList[i].to}
@@ -44,20 +44,19 @@ export default function Preview({ allInfo }) {
       const { id } = allInfo.workList[i];
       works.push(
         <div key={`divDisplay${id}`}>
-          <p key={`positionDisplay${id}`}>
+          <p key={`positionDisplay${id}`} className="contentBold">
             {allInfo.workList[i].position}
           </p>
-          <p key={`companyDisplay${id}`}>
+          <p key={`companyDisplay${id}`} className="content">
             {allInfo.workList[i].company}
             {', '}
             {allInfo.workList[i].city}
           </p>
-          <p key={`fromDisplay${id}`}>
+          <p key={`fromDisplay${id}`} className="content">
             {allInfo.workList[i].from}
             {' - '}
             {allInfo.workList[i].to}
           </p>
-          <hr />
         </div>,
       );
     }
@@ -88,20 +87,20 @@ export default function Preview({ allInfo }) {
         <p className="previewSubtitle">
           Direccion
         </p>
-        <p>
+        <p className="content">
           {address}
         </p>
 
         <p className="previewSubtitle">
           Celular
         </p>
-        <p>
+        <p className="content">
           {phoneNumber}
         </p>
         <p className="previewSubtitle">
           Email
         </p>
-        <p>
+        <p className="content">
           {email}
         </p>
       </div>
@@ -110,7 +109,7 @@ export default function Preview({ allInfo }) {
           Descripcion
         </p>
         <hr />
-        <p id="mainDescription">{description}</p>
+        <p className="content">{description}</p>
       </div>
       <div id="previewExperience">
         <p className="previewSubtitle">
