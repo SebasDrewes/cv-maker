@@ -285,6 +285,8 @@ class App extends React.Component {
           {this.workList()}
           {this.workForm()}
           {this.displayWorkButton()}
+        </div>
+        <div id="previewMainContainer">
           <Preview allInfo={this.state} />
         </div>
       </div>

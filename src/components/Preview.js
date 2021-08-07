@@ -76,7 +76,7 @@ export default function Preview({ allInfo }) {
   return (
     // eslint-disable-next-line react/jsx-filename-extension
     // eslint-disable-next-line no-console
-    <div>
+    <div id="previewContainer">
       <div id="previewMain">
         <p id="mainFullName">
           {firstName}

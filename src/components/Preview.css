@@ -1,3 +1,27 @@
 #avatar{
-    width: 15vw;
+    width: 12vw;
+}
+#previewContainer{
+    display: grid;
+    margin: 0;
+    padding: 0;
+    height: auto;
+    width: 60vw;
+    grid-template-columns: 15vw 15vw 15vw 15vw;
+    grid-template-rows: auto;
+    grid-template-areas: "previewMain previewMain previewMain previewMain"
+                         "previewDescription previewDescription previewDescription previewContact"
+                         "previewEducation previewEducation previewEducation previewContact"
+}
+#previewMain {
+    grid-area: previewMain
+}
+#previewDescription {
+    grid-area: previewDescription
+}
+#previewContact {
+    grid-area: previewContact
+}
+#previewEducation {
+    grid-area: previewEducation
 }
