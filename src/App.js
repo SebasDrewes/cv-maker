@@ -271,7 +271,8 @@ class App extends React.Component {
     return works || null;
   }
 
-  loadExample() {
+  loadExample(e) {
+    e.preventDefault();
     this.setState({
       generalInfo: {
         firstName: 'Sebastián',

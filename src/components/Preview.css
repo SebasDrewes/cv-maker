@@ -1,6 +1,6 @@
 #avatar{
-    width: 12vw;
-    margin: 3vh;
+    width: 90%;
+    margin-top: 5%;
 }
 #previewContainer{
     display: grid;
@@ -30,12 +30,12 @@
 }
 #previewName{
     font-size: 2em;
-    margin: 2.5vh;
+    margin: 2vh;
     font-weight: bold;
 }
 #previewTitle {
     font-size: 1.5em;
-    margin: 2.5vh;
+    margin: 2vh;
 }
 .previewSubtitle {
     font-size: 1em;
@@ -73,4 +73,10 @@ hr{
 .content {
     font-size: 1em;
     margin: 1vh;
+}
+@media (max-width: 1150px) {
+    #previewContainer{
+        width: 100%;
+        grid-template-columns: 25% 25% 25% 25%;
+    }
 }
