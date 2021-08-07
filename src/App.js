@@ -66,6 +66,7 @@ class App extends React.Component {
     this.removeWork = this.removeWork.bind(this);
     this.removeStudy = this.removeStudy.bind(this);
     this.imageUpload = this.imageUpload.bind(this);
+    this.loadExample = this.loadExample.bind(this);
   }
 
   saveGeneralInfo(e) {
@@ -270,6 +271,71 @@ class App extends React.Component {
     return works || null;
   }
 
+  loadExample() {
+    this.setState({
+      generalInfo: {
+        firstName: 'Sebastián',
+        lastName: 'Drewes',
+        title: 'Front End Developer',
+        address: 'Buenos Aires, CABA',
+        phoneNumber: '1123456789',
+        email: 'sebas.drewes@gmail.com',
+        description: `Desarrollador web con enfoque en Front End, competente en HTML5, CSS3 y JavaScript.
+
+Constantemente estoy en la búsqueda de oportunidades para aprender conceptos nuevos y mejorar mis habilidades.
+Me interesa poder trabajar en una organización que me permita poder poner en práctica todo mi conocimiento y experiencia, también crecer profesionalmente, haciendo foco en el trabajo en equipo y resolución de problemas.
+        
+Podes ver mis proyectos en: https://github.com/SebasDrewes`,
+      },
+      photo: `${process.env.PUBLIC_URL}/sebas.jpeg`,
+      showStudyInfo: false,
+
+      studiesInfo: {
+        institute: '',
+        title: '',
+        from: '',
+        to: '',
+        id: uniqid(),
+      },
+
+      studiesList: [{
+        from: '2021',
+        id: 'ks21kjug',
+        institute: 'The Odin Project',
+        title: 'Fullstack Developer',
+        to: 'Actual',
+      },
+      {
+        from: '2016',
+        id: 'ks21l2q3',
+        institute: 'ASIMRA',
+        title: 'Tecnico en gestion ambiental',
+        to: '2019',
+      },
+      ],
+
+      showWorkInfo: false,
+
+      workInfo: {
+        position: '',
+        company: '',
+        city: '',
+        from: '',
+        to: '',
+        id: uniqid(),
+      },
+
+      workList: [{
+        city: 'CABA',
+        company: 'Aerolineas Argentinas',
+        from: '2018',
+        id: 'ks21j2sn',
+        position: 'Auxiliar de Contact Center',
+        to: 'Actual',
+      }],
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -286,7 +352,7 @@ class App extends React.Component {
           {this.studyForm()}
           {this.displayStudyButton()}
           <button type="button" className="pdf">Generar PDF</button>
-          <button type="button" className="ejemplo">Cargar Ejemplo</button>
+          <button type="button" className="ejemplo" onClick={this.loadExample}>Cargar Ejemplo</button>
         </div>
         <div id="previewMainContainer">
           <Preview allInfo={this.state} />
