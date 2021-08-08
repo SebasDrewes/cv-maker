@@ -1,7 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 
-// eslint-disable-next-line react/prop-types
 export default function GeneralInfo({ saveGeneralInfo, savePhoto, stateInfo }) {
   const hiddenFileInput = React.useRef(null);
   const handleClick = () => {
