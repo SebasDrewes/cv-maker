@@ -1,13 +1,3 @@
-/* eslint-disable react/no-unused-state */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable no-return-assign */
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/button-has-type */
-/* eslint-disable react/jsx-filename-extension */
-/* eslint-disable consistent-return */
-/* eslint-disable no-console */
-/* eslint-disable react/no-access-state-in-setstate */
-/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import ReactToPrint from 'react-to-print';
 import './App.css';
