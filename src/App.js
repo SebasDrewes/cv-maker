@@ -1,3 +1,6 @@
+/* eslint-disable react/no-unused-state */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable no-return-assign */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/jsx-filename-extension */
@@ -6,8 +9,10 @@
 /* eslint-disable react/no-access-state-in-setstate */
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
+import ReactToPrint from 'react-to-print';
 import './App.css';
 import uniqid from 'uniqid';
+import { Link } from 'react-scroll';
 import GeneralInfo from './components/GeneralInfo';
 import StudiesInfo from './components/StudiesInfo';
 import WorkInfo from './components/WorkInfo';
@@ -81,7 +86,6 @@ class App extends React.Component {
         [name]: value,
       },
     });
-    console.log(this.state);
   }
 
   saveStudiesInfo(e) {
@@ -96,7 +100,6 @@ class App extends React.Component {
         [name]: value,
       },
     });
-    console.log(this.state);
   }
 
   imageUpload(e) {
@@ -106,7 +109,6 @@ class App extends React.Component {
         photo: URL.createObjectURL(img),
       });
     }
-    console.log(this.state);
   }
 
   saveWorkInfo(e) {
@@ -121,11 +123,9 @@ class App extends React.Component {
         [name]: value,
       },
     });
-    console.log(this.state);
   }
 
   addStudy() {
-    console.log(this.state.studiesList);
     if (this.state.studiesList.length < 5) {
       this.setState({
         showStudyInfo: false,
@@ -142,7 +142,6 @@ class App extends React.Component {
   }
 
   addWork() {
-    console.log(this.state.workList);
     if (this.state.workList.length < 5) {
       this.setState({
         showWorkInfo: false,
@@ -273,6 +272,7 @@ class App extends React.Component {
 
   loadExample(e) {
     e.preventDefault();
+
     this.setState({
       generalInfo: {
         firstName: 'Sebastián',
@@ -343,7 +343,11 @@ Podes ver mis proyectos en: https://github.com/SebasDrewes`,
         <h1 id="title">CV Maker</h1>
         <div className="container">
           <p className="subtitle">Informacion Personal</p>
-          <GeneralInfo saveGeneralInfo={this.saveGeneralInfo} savePhoto={this.imageUpload} />
+          <GeneralInfo
+            saveGeneralInfo={this.saveGeneralInfo}
+            savePhoto={this.imageUpload}
+            stateInfo={this.state}
+          />
           <p className="subtitle">Experiencia laboral</p>
           {this.workList()}
           {this.workForm()}
@@ -352,12 +356,27 @@ Podes ver mis proyectos en: https://github.com/SebasDrewes`,
           {this.studyList()}
           {this.studyForm()}
           {this.displayStudyButton()}
-          <button type="button" className="pdf">Generar PDF</button>
-          <button type="button" className="ejemplo" onClick={this.loadExample}>Cargar Ejemplo</button>
+          <ReactToPrint
+            pageStyle="  @page { size: landscape; margin: 0; }"
+            trigger={() => <button type="button" className="pdf">Descargar PDF</button>}
+            content={() => this.componentRef}
+          />
+          <Link
+            to="bottom"
+            spy
+            smooth
+            offset={-70}
+            duration={500}
+          >
+            <button type="button" className="ejemplo" onClick={this.loadExample}>Cargar Ejemplo</button>
+
+          </Link>
         </div>
+        <h1 id="curriculum">CV Preview</h1>
         <div id="previewMainContainer">
-          <Preview allInfo={this.state} />
+          <Preview allInfo={this.state} ref={(el) => (this.componentRef = el)} />
         </div>
+        <div id="bottom" />
       </div>
     );
   }

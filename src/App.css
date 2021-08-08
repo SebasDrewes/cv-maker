@@ -3,6 +3,9 @@ body {
   font-family: 'Nunito', serif;
   background-color: rgb(172, 172, 172);
 }
+html {
+  scroll-behavior: smooth;
+}
 #title {
   display: flex;
   align-items: center;
@@ -111,6 +114,12 @@ button {
 }
 .ejemplo {
   background-color: rgb(230, 124, 39);
+}
+#curriculum {
+  color: rgb(0, 0, 0);
+  font-size: 3em;
+  text-decoration: underline;
+  text-align: center;
 }
 @media (max-width: 1150px) {
   body {

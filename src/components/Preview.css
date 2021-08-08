@@ -25,6 +25,7 @@
 }
 #previewDescription {
     grid-area: previewDescription;
+    height: 100%;
     white-space: pre-line;
     white-space: pre-wrap;
 }
@@ -74,6 +75,7 @@ hr{
     font-size: 1em;
     margin: 1vh;
 }
+
 @media (max-width: 1150px) {
     #previewContainer{
         width: 100%;
