@@ -7,7 +7,7 @@ import GeneralInfo from './components/GeneralInfo';
 import StudiesInfo from './components/StudiesInfo';
 import WorkInfo from './components/WorkInfo';
 import Preview from './components/Preview';
-
+/* eslint-disable */
 class App extends React.Component {
   constructor(props) {
     super(props);

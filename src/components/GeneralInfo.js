@@ -1,5 +1,5 @@
 import React from 'react';
-
+/* eslint-disable */
 export default function GeneralInfo({ saveGeneralInfo, savePhoto, stateInfo }) {
   const hiddenFileInput = React.useRef(null);
   const handleClick = () => {

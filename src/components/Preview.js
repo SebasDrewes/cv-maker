@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './Preview.css';
-
+/* eslint-disable */
 export default class Preview extends React.Component {
   // def elementos general
   render() {

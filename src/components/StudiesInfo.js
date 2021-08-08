@@ -1,6 +1,6 @@
 import React from 'react';
 
-
+/* eslint-disable */
 export default function StudiesInfo({ saveStudiesInfo }) {
   return (
 

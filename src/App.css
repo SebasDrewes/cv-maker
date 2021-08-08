@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 body {
   font-family: 'Nunito', serif;
-  background-color: rgb(172, 172, 172);
+  background-color: rgb(255, 255, 255);
 }
+
 html {
   scroll-behavior: smooth;
 }
@@ -126,12 +127,13 @@ button {
     background-color: rgb(233, 232, 232);
   }
   #title {
-    width: 100%;
+    width: 100vw;
+    padding: 1vw;
   }
   .container {
-  width: 100%;
+  width: 100vw;
   margin: 0;
-  padding: 0;
+  padding: 1vw;
   border: none;
   border-radius: 0%;
   }
@@ -149,9 +151,8 @@ button {
     width: 97vw;
   }
   #previewMainContainer {
-    width: 100%;
+    width: 102vw;
     margin: 0;
-    padding: 0;
     border: none;
     border-radius: 0%;
   }
