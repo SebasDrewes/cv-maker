@@ -1,9 +1,7 @@
-/* eslint-disable react/jsx-filename-extension */
-/* eslint-disable react/prop-types */
 import React from 'react';
-// eslint-disable-next-line import/no-self-import
+
 import './Preview.css';
-// eslint-disable-next-line react/prop-types
+
 export default class Preview extends React.Component {
   // def elementos general
   render() {
