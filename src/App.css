@@ -127,7 +127,7 @@ button {
     background-color: rgb(233, 232, 232);
   }
   #title {
-    width: 100vw;
+    width: 102vw;
     padding: 1vw;
   }
   .container {
@@ -151,7 +151,7 @@ button {
     width: 97vw;
   }
   #previewMainContainer {
-    width: 102vw;
+    width: 104vw;
     margin: 0;
     border: none;
     border-radius: 0%;
