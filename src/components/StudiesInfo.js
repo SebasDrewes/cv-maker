@@ -1,9 +1,9 @@
 import React from 'react';
 
-// eslint-disable-next-line react/prop-types
+
 export default function StudiesInfo({ saveStudiesInfo }) {
   return (
-    // eslint-disable-next-line react/jsx-filename-extension
+
     <div>
       <form>
         <input type="text" name="institute" placeholder="Nombre del Instituto" onChange={saveStudiesInfo} />
