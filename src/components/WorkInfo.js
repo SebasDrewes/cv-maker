@@ -1,9 +1,8 @@
 import React from 'react';
 
-// eslint-disable-next-line react/prop-types
 export default function WorkInfo({ saveWorkInfo }) {
   return (
-    // eslint-disable-next-line react/jsx-filename-extension
+
     <div>
       <form>
         <input type="text" name="position" placeholder="Posicion" onChange={saveWorkInfo} />
