@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactToPrint from 'react-to-print';
 import './App.css';
 import uniqid from 'uniqid';
@@ -8,7 +8,45 @@ import StudiesInfo from './components/StudiesInfo';
 import WorkInfo from './components/WorkInfo';
 import Preview from './components/Preview';
 
-class App extends React.Component {
+const App = (props) => {
+  const [generalInfo, setGeneralInfo] = useState({
+    firstName: '',
+    lastName: '',
+    title: '',
+    address: '',
+    phoneNumber: '',
+    email: '',
+    description: '',
+  });
+
+  const [photo, setPhoto] = useState("");
+
+  const [showStudyInfo, setShowStudyInfo] = useState(false);
+
+  const [studiesInfo, setStudiesInfo] = useState({
+    institute: '',
+    title: '',
+    from: '',
+    to: '',
+    id: uniqid(),
+  });
+
+  const [studiesList, setStudiesList] = useState([])
+
+  const [showWorkInfo, setWorkInfo] = useState(false);
+
+  const [workInfo, setShowWorkInfo] = useState({
+    position: '',
+    company: '',
+    city: '',
+    from: '',
+    to: '',
+    id: uniqid(),
+  });
+
+  const [workList, setWorkList] = useState([]);
+
+  /*
   constructor(props) {
     super(props);
     this.state = {
@@ -46,8 +84,8 @@ class App extends React.Component {
       },
 
       workList: [],
-    };
-    this.saveGeneralInfo = this.saveGeneralInfo.bind(this);
+    };*/
+    /*this.saveGeneralInfo = this.saveGeneralInfo.bind(this);
     this.saveStudiesInfo = this.saveStudiesInfo.bind(this);
     this.saveWorkInfo = this.saveWorkInfo.bind(this);
     this.addStudy = this.addStudy.bind(this);
@@ -61,199 +99,188 @@ class App extends React.Component {
     this.removeWork = this.removeWork.bind(this);
     this.removeStudy = this.removeStudy.bind(this);
     this.imageUpload = this.imageUpload.bind(this);
-    this.loadExample = this.loadExample.bind(this);
-  }
+    this.loadExample = this.loadExample.bind(this);*/
+  
 
-  saveGeneralInfo(e) {
+  function saveGeneralInfo(e) {
     e.preventDefault();
     const { target } = e;
     const { value } = target;
     const { name } = target;
-    this.setState({
+    setGeneralInfo({
       generalInfo: {
 
-        ...this.state.generalInfo,
+        ...generalInfo,
         [name]: value,
       },
     });
   }
 
-  saveStudiesInfo(e) {
+  function saveStudiesInfo(e) {
     e.preventDefault();
     const { target } = e;
     const { value } = target;
     const { name } = target;
-    this.setState({
+    setStudiesInfo({
       studiesInfo: {
 
-        ...this.state.studiesInfo,
+        ...studiesInfo,
         [name]: value,
       },
     });
   }
 
-  imageUpload(e) {
+  function imageUpload(e){
     if (e.target.files && e.target.files[0]) {
       const img = e.target.files[0];
-      this.setState({
-        photo: URL.createObjectURL(img),
-      });
+      setPhoto(URL.createObjectURL(img));
     }
   }
 
-  saveWorkInfo(e) {
+  function saveWorkInfo(e) {
     e.preventDefault();
     const { target } = e;
     const { value } = target;
     const { name } = target;
-    this.setState({
+    setWorkInfo({
       workInfo: {
 
-        ...this.state.workInfo,
+        ...workInfo,
         [name]: value,
       },
     });
   }
 
-  addStudy() {
-    if (this.state.studiesList.length < 5) {
-      this.setState({
-        showStudyInfo: false,
-        studiesInfo: {
+  function addStudy() {
+    if (studiesList.length < 5) {
+      setStudiesInfo({
           institute: '',
           title: '',
           from: '',
           to: '',
           id: uniqid(),
-        },
-        studiesList: this.state.studiesList.concat(this.state.studiesInfo),
       });
+      setShowStudyInfo(false);
+      setStudiesList(studiesList.concat(studiesInfo));
     }
   }
 
-  addWork() {
-    if (this.state.workList.length < 5) {
-      this.setState({
-        showWorkInfo: false,
-        workInfo: {
-          institute: '',
-          title: '',
-          from: '',
-          to: '',
-          id: uniqid(),
-        },
-        workList: this.state.workList.concat(this.state.workInfo),
-      });
+  function addWork() {
+    if (workList.length < 5) {
+      setWorkInfo({
+        position: '',
+        company: '',
+        city: '',
+        from: '',
+        to: '',
+        id: uniqid()
+        });
+      setWorkList(workList.concat(workInfo));
+      setShowWorkInfo(false);
+      };
+    }
+
+  function studyForm() {
+    if (showStudyInfo) {
+      return <StudiesInfo saveStudiesInfo={saveStudiesInfo} /> || null;
     }
   }
 
-  studyForm() {
-    if (this.state.showStudyInfo) {
-      return <StudiesInfo saveStudiesInfo={this.saveStudiesInfo} /> || null;
-    }
-  }
-
-  displayStudyForm() {
-    if (this.state.showStudyInfo) {
-      this.setState({
-        showStudyInfo: false,
-      });
+  function displayStudyForm() {
+    if (showStudyInfo) {
+      setShowStudyInfo(false);
     } else {
-      this.setState({
-        showStudyInfo: true,
-      });
+      setShowStudyInfo(true);
     }
   }
 
-  workForm() {
-    if (this.state.showWorkInfo) { return <WorkInfo saveWorkInfo={this.saveWorkInfo} /> || null; }
+  function workForm() {
+    if (showWorkInfo) { 
+      return <WorkInfo saveWorkInfo={saveWorkInfo} /> || null; 
+    }
   }
 
-  displayWorkForm() {
-    if (this.state.showWorknfo) {
-      this.setState({
-        showWorkInfo: false,
-      });
+  function displayWorkForm() {
+    if (showWorkInfo) {
+      setShowWorkInfo(false);
     } else {
-      this.setState({
-        showWorkInfo: true,
-      });
+      setShowWorkInfo(true);
     }
   }
 
-  displayStudyButton() {
-    if (this.state.showStudyInfo) {
-      return <button onClick={this.addStudy} type="button" className="guardar">Guardiar estudio</button>;
+  function displayStudyButton() {
+    if (showStudyInfo) {
+      return <button onClick={addStudy} type="button" className="guardar">Guardiar estudio</button>;
     }
-    return <button onClick={this.displayStudyForm} type="button">Agregar Estudios</button>;
+    return <button onClick={displayStudyForm} type="button">Agregar Estudios</button>;
   }
 
-  displayWorkButton() {
-    if (this.state.showWorkInfo) {
-      return <button onClick={this.addWork} type="button" className="guardar">Guardar Experiencia</button>;
+  function displayWorkButton() {
+    if (showWorkInfo) {
+      return <button onClick={addWork} type="button" className="guardar">Guardar Experiencia</button>;
     }
-    return <button onClick={this.displayWorkForm} type="button">Agregar Experiencia</button>;
+    return <button onClick={displayWorkForm} type="button">Agregar Experiencia</button>;
   }
 
-  removeStudy(id) {
-    this.setState({
-      studiesList: this.state.studiesList.filter(((study) => study.id !== id)),
-    });
-  }
+  function removeStudy(id) {
+    setStudiesList(
+      studiesList.filter(((study) => study.id !== id))
+    );
+  };
 
-  removeWork(id) {
-    this.setState({
-      workList: this.state.workList.filter(((work) => work.id !== id)),
-    });
-  }
+  function removeWork(id) {
+    setWorkList(
+      workList.filter(((work) => work.id !== id))
+    );
+  };
 
-  studyList() {
+  function studyList() {
     const studies = [];
-    for (let i = 0; i < this.state.studiesList.length; i += 1) {
-      const { id } = this.state.studiesList[i];
+    for (let i = 0; i < studiesList.length; i += 1) {
+      const { id } = studiesList[i];
       studies.push(
         <div className="list" key={`div${id}`}>
           <p className="confirmedInput" key={`institute${id}`}>
-            {this.state.studiesList[i].institute}
+            {studiesList[i].institute}
           </p>
           <p className="confirmedInput" key={`title${id}`}>
-            {this.state.studiesList[i].title}
+            {studiesList[i].title}
           </p>
           <p className="confirmedInput" key={`from${id}`}>
-            {this.state.studiesList[i].from}
+            {studiesList[i].from}
           </p>
           <p className="confirmedInput" key={`to${id}`}>
-            {this.state.studiesList[i].to}
+            {studiesList[i].to}
           </p>
-          <button onClick={(e) => this.removeStudy(id)} className="borrar">Borrar Estudio</button>
-        </div>,
+          <button onClick={(e) => removeStudy(id)} className="borrar">Borrar Estudio</button>
+        </div>
       );
     }
     return studies || null;
   }
 
-  workList() {
+  function displayWorkList() {
     const works = [];
-    for (let i = 0; i < this.state.workList.length; i += 1) {
-      const { id } = this.state.workList[i];
+    for (let i = 0; i < workList.length; i += 1) {
+      const { id } = workList[i];
       works.push(
         <div className="list" key={`div${id}`}>
           <p className="confirmedInput" key={`position:${id}`}>
-            {this.state.workList[i].position}
+            {workList[i].position}
           </p>
           <p className="confirmedInput" key={`company${id}`}>
-            {this.state.workList[i].company}
+            {workList[i].company}
           </p>
           <p className="confirmedInput" key={`city${id}`}>
-            {this.state.workList[i].city}
+            {workList[i].city}
           </p>
           <p className="confirmedInput" key={`from${id}`}>
-            {this.state.workList[i].from}
+            {workList[i].from}
           </p>
           <p className="confirmedInput" key={`to${id}`}>
-            {this.state.workList[i].to}
+            {workList[i].to}
           </p>
-          <button onClick={(e) => this.removeWork(id)} className="borrar">Borrar Experiencia</button>
+          <button onClick={(e) => removeWork(id)} className="borrar">Borrar Experiencia</button>
         </div>,
       );
     }
@@ -339,7 +366,7 @@ Podes ver mis proyectos en: https://github.com/SebasDrewes`,
             stateInfo={this.state}
           />
           <p className="subtitle">Experiencia laboral</p>
-          {this.workList()}
+          {displayWorkList()}
           {this.workForm()}
           {this.displayWorkButton()}
           <p className="subtitle">Estudios</p>
