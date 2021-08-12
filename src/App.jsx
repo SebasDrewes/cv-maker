@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import ReactToPrint from 'react-to-print';
+// import ReactToPrint from 'react-to-print';
 import './App.css';
 import uniqid from 'uniqid';
 import { Link } from 'react-scroll';
 import GeneralInfo from './components/GeneralInfo';
 import StudiesInfo from './components/StudiesInfo';
 import WorkInfo from './components/WorkInfo';
-import Preview from './components/Preview';
+// import Preview from './components/Preview';
 
-const App = (props) => {
+const App = () => {
   const [generalInfo, setGeneralInfo] = useState({
     firstName: '',
     lastName: '',
@@ -19,8 +19,8 @@ const App = (props) => {
     description: '',
   });
 
-  const [photo, setPhoto] = useState("");
-
+  const [photo, setPhoto] = useState('');
+  console.log(photo);
   const [showStudyInfo, setShowStudyInfo] = useState(false);
 
   const [studiesInfo, setStudiesInfo] = useState({
@@ -31,7 +31,7 @@ const App = (props) => {
     id: uniqid(),
   });
 
-  const [studiesList, setStudiesList] = useState([])
+  const [studiesList, setStudiesList] = useState([]);
 
   const [showWorkInfo, setWorkInfo] = useState(false);
 
@@ -84,8 +84,8 @@ const App = (props) => {
       },
 
       workList: [],
-    };*/
-    /*this.saveGeneralInfo = this.saveGeneralInfo.bind(this);
+    }; */
+  /* this.saveGeneralInfo = this.saveGeneralInfo.bind(this);
     this.saveStudiesInfo = this.saveStudiesInfo.bind(this);
     this.saveWorkInfo = this.saveWorkInfo.bind(this);
     this.addStudy = this.addStudy.bind(this);
@@ -99,8 +99,7 @@ const App = (props) => {
     this.removeWork = this.removeWork.bind(this);
     this.removeStudy = this.removeStudy.bind(this);
     this.imageUpload = this.imageUpload.bind(this);
-    this.loadExample = this.loadExample.bind(this);*/
-  
+    this.loadExample = this.loadExample.bind(this); */
 
   function saveGeneralInfo(e) {
     e.preventDefault();
@@ -130,7 +129,7 @@ const App = (props) => {
     });
   }
 
-  function imageUpload(e){
+  function imageUpload(e) {
     if (e.target.files && e.target.files[0]) {
       const img = e.target.files[0];
       setPhoto(URL.createObjectURL(img));
@@ -154,11 +153,11 @@ const App = (props) => {
   function addStudy() {
     if (studiesList.length < 5) {
       setStudiesInfo({
-          institute: '',
-          title: '',
-          from: '',
-          to: '',
-          id: uniqid(),
+        institute: '',
+        title: '',
+        from: '',
+        to: '',
+        id: uniqid(),
       });
       setShowStudyInfo(false);
       setStudiesList(studiesList.concat(studiesInfo));
@@ -173,17 +172,17 @@ const App = (props) => {
         city: '',
         from: '',
         to: '',
-        id: uniqid()
-        });
+        id: uniqid(),
+      });
       setWorkList(workList.concat(workInfo));
       setShowWorkInfo(false);
-      };
     }
+  }
 
   function studyForm() {
     if (showStudyInfo) {
-      return <StudiesInfo saveStudiesInfo={saveStudiesInfo} /> || null;
-    }
+      return <StudiesInfo saveStudiesInfo={saveStudiesInfo} />;
+    } return null;
   }
 
   function displayStudyForm() {
@@ -195,9 +194,9 @@ const App = (props) => {
   }
 
   function workForm() {
-    if (showWorkInfo) { 
-      return <WorkInfo saveWorkInfo={saveWorkInfo} /> || null; 
-    }
+    if (showWorkInfo) {
+      return <WorkInfo saveWorkInfo={saveWorkInfo} />;
+    } return null;
   }
 
   function displayWorkForm() {
@@ -224,15 +223,15 @@ const App = (props) => {
 
   function removeStudy(id) {
     setStudiesList(
-      studiesList.filter(((study) => study.id !== id))
+      studiesList.filter(((study) => study.id !== id)),
     );
-  };
+  }
 
   function removeWork(id) {
     setWorkList(
-      workList.filter(((work) => work.id !== id))
+      workList.filter(((work) => work.id !== id)),
     );
-  };
+  }
 
   function studyList() {
     const studies = [];
@@ -252,8 +251,8 @@ const App = (props) => {
           <p className="confirmedInput" key={`to${id}`}>
             {studiesList[i].to}
           </p>
-          <button onClick={(e) => removeStudy(id)} className="borrar">Borrar Estudio</button>
-        </div>
+          <button type="button" onClick={() => removeStudy(id)} className="borrar">Borrar Estudio</button>
+        </div>,
       );
     }
     return studies || null;
@@ -280,123 +279,117 @@ const App = (props) => {
           <p className="confirmedInput" key={`to${id}`}>
             {workList[i].to}
           </p>
-          <button onClick={(e) => removeWork(id)} className="borrar">Borrar Experiencia</button>
+          <button type="button" onClick={() => removeWork(id)} className="borrar">Borrar Experiencia</button>
         </div>,
       );
     }
     return works || null;
   }
 
-  loadExample(e) {
+  function loadExample(e) {
     e.preventDefault();
 
-    this.setState({
-      generalInfo: {
-        firstName: 'Sebastián',
-        lastName: 'Drewes',
-        title: 'Front End Developer',
-        address: 'Buenos Aires, CABA',
-        phoneNumber: '1123456789',
-        email: 'sebas.drewes@gmail.com',
-        description: `Desarrollador web con enfoque en Front End, competente en HTML5, CSS3 y JavaScript.
+    setGeneralInfo({
+      firstName: 'Sebastián',
+      lastName: 'Drewes',
+      title: 'Front End Developer',
+      address: 'Buenos Aires, CABA',
+      phoneNumber: '1123456789',
+      email: 'sebas.drewes@gmail.com',
+      description: `Desarrollador web con enfoque en Front End, competente en HTML5, CSS3 y JavaScript.
 
 Constantemente estoy en la búsqueda de oportunidades para aprender conceptos nuevos y mejorar mis habilidades.
 Me interesa poder trabajar en una organización que me permita poder poner en práctica todo mi conocimiento y experiencia, también crecer profesionalmente, haciendo foco en el trabajo en equipo y resolución de problemas.
         
 Podes ver mis proyectos en: https://github.com/SebasDrewes`,
-      },
-      photo: `${process.env.PUBLIC_URL}/sebas.jpeg`,
-      showStudyInfo: false,
-
-      studiesInfo: {
-        institute: '',
-        title: '',
-        from: '',
-        to: '',
-        id: uniqid(),
-      },
-
-      studiesList: [{
-        from: '2021',
-        id: 'ks21kjug',
-        institute: 'The Odin Project',
-        title: 'Fullstack Developer',
-        to: 'Actual',
-      },
-      {
-        from: '2016',
-        id: 'ks21l2q3',
-        institute: 'ASIMRA',
-        title: 'Tecnico en gestion ambiental',
-        to: '2019',
-      },
-      ],
-
-      showWorkInfo: false,
-
-      workInfo: {
-        position: '',
-        company: '',
-        city: '',
-        from: '',
-        to: '',
-        id: uniqid(),
-      },
-
-      workList: [{
-        city: 'CABA',
-        company: 'Aerolineas Argentinas',
-        from: '2018',
-        id: 'ks21j2sn',
-        position: 'Auxiliar de Contact Center',
-        to: 'Actual',
-      }],
     });
+    setPhoto(`${process.env.PUBLIC_URL}/sebas.jpeg`);
+    setShowStudyInfo(false);
+    setStudiesInfo({
+      institute: '',
+      title: '',
+      from: '',
+      to: '',
+      id: uniqid(),
+    });
+    setStudiesList([{
+      from: '2021',
+      id: 'ks21kjug',
+      institute: 'The Odin Project',
+      title: 'Fullstack Developer',
+      to: 'Actual',
+    },
+    {
+      from: '2016',
+      id: 'ks21l2q3',
+      institute: 'ASIMRA',
+      title: 'Tecnico en gestion ambiental',
+      to: '2019',
+    },
+    ]);
+
+    setShowWorkInfo(false);
+
+    setWorkInfo({
+      position: '',
+      company: '',
+      city: '',
+      from: '',
+      to: '',
+      id: uniqid(),
+    });
+
+    setWorkList([{
+      city: 'CABA',
+      company: 'Aerolineas Argentinas',
+      from: '2018',
+      id: 'ks21j2sn',
+      position: 'Auxiliar de Contact Center',
+      to: 'Actual',
+    },
+    ]);
   }
+  return (
+    <div className="App">
+      <h1 id="title">CV Maker</h1>
+      <div className="container">
+        <p className="subtitle">Informacion Personal</p>
+        <GeneralInfo
+          saveGeneralInfo={saveGeneralInfo}
+          savePhoto={imageUpload}
+          generalInfo={generalInfo}
+        />
+        <p className="subtitle">Experiencia laboral</p>
+        {displayWorkList()}
+        {workForm()}
+        {displayWorkButton()}
+        <p className="subtitle">Estudios</p>
+        {studyList()}
+        {studyForm()}
+        {displayStudyButton()}
+        {/* <ReactToPrint
+          pageStyle="  @page { size: landscape; margin: 0; }"
+          trigger={() => <button type="button" className="pdf">Descargar PDF</button>}
+          content={() => this.componentRef}
+        /> */}
+        <Link
+          to="bottom"
+          spy
+          smooth
+          offset={-70}
+          duration={500}
+        >
+          <button type="button" className="ejemplo" onClick={loadExample}>Cargar Ejemplo</button>
 
-  render() {
-    return (
-      <div className="App">
-        <h1 id="title">CV Maker</h1>
-        <div className="container">
-          <p className="subtitle">Informacion Personal</p>
-          <GeneralInfo
-            saveGeneralInfo={this.saveGeneralInfo}
-            savePhoto={this.imageUpload}
-            stateInfo={this.state}
-          />
-          <p className="subtitle">Experiencia laboral</p>
-          {displayWorkList()}
-          {this.workForm()}
-          {this.displayWorkButton()}
-          <p className="subtitle">Estudios</p>
-          {this.studyList()}
-          {this.studyForm()}
-          {this.displayStudyButton()}
-          <ReactToPrint
-            pageStyle="  @page { size: landscape; margin: 0; }"
-            trigger={() => <button type="button" className="pdf">Descargar PDF</button>}
-            content={() => this.componentRef}
-          />
-          <Link
-            to="bottom"
-            spy
-            smooth
-            offset={-70}
-            duration={500}
-          >
-            <button type="button" className="ejemplo" onClick={this.loadExample}>Cargar Ejemplo</button>
-
-          </Link>
-        </div>
-        <h1 id="curriculum">CV Preview</h1>
-        <div id="previewMainContainer">
-          <Preview allInfo={this.state} ref={(el) => (this.componentRef = el)} />
-        </div>
-        <div id="bottom" />
+        </Link>
       </div>
-    );
-  }
-}
+      <h1 id="curriculum">CV Preview</h1>
+      <div id="previewMainContainer">
+        {/* <Preview allInfo={this.state} ref={(el) => (this.componentRef = el)} /> */}
+      </div>
+      <div id="bottom" />
+    </div>
+  );
+};
 
 export default App;

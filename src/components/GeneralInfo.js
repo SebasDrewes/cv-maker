@@ -1,13 +1,13 @@
 import React from 'react';
 /* eslint-disable */
-export default function GeneralInfo({ saveGeneralInfo, savePhoto, stateInfo }) {
+export default function GeneralInfo({ saveGeneralInfo, savePhoto, generalInfo }) {
   const hiddenFileInput = React.useRef(null);
   const handleClick = () => {
     hiddenFileInput.current.click();
   };
   const {
     firstName, lastName, title, address, phoneNumber, email, description,
-  } = stateInfo.generalInfo;
+  } = generalInfo;
   return (
     // eslint-disable-next-line react/jsx-filename-extension
     <div>
