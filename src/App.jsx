@@ -20,7 +20,7 @@ const App = () => {
   });
 
   const [photo, setPhoto] = useState('');
-  console.log(photo);
+  document.write = photo;
   const [showStudyInfo, setShowStudyInfo] = useState(false);
 
   const [studiesInfo, setStudiesInfo] = useState({
@@ -33,9 +33,9 @@ const App = () => {
 
   const [studiesList, setStudiesList] = useState([]);
 
-  const [showWorkInfo, setWorkInfo] = useState(false);
+  const [showWorkInfo, setShowWorkInfo] = useState(false);
 
-  const [workInfo, setShowWorkInfo] = useState({
+  const [workInfo, setWorkInfo] = useState({
     position: '',
     company: '',
     city: '',
@@ -46,72 +46,14 @@ const App = () => {
 
   const [workList, setWorkList] = useState([]);
 
-  /*
-  constructor(props) {
-    super(props);
-    this.state = {
-      generalInfo: {
-        firstName: '',
-        lastName: '',
-        title: '',
-        address: '',
-        phoneNumber: '',
-        email: '',
-        description: '',
-      },
-      photo: '',
-      showStudyInfo: false,
-
-      studiesInfo: {
-        institute: '',
-        title: '',
-        from: '',
-        to: '',
-        id: uniqid(),
-      },
-
-      studiesList: [],
-
-      showWorkInfo: false,
-
-      workInfo: {
-        position: '',
-        company: '',
-        city: '',
-        from: '',
-        to: '',
-        id: uniqid(),
-      },
-
-      workList: [],
-    }; */
-  /* this.saveGeneralInfo = this.saveGeneralInfo.bind(this);
-    this.saveStudiesInfo = this.saveStudiesInfo.bind(this);
-    this.saveWorkInfo = this.saveWorkInfo.bind(this);
-    this.addStudy = this.addStudy.bind(this);
-    this.displayStudyForm = this.displayStudyForm.bind(this);
-    this.studyForm = this.studyForm.bind(this);
-    this.displayStudyButton = this.displayStudyButton.bind(this);
-    this.displayWorkButton = this.displayWorkButton.bind(this);
-    this.addWork = this.addWork.bind(this);
-    this.displayWorkForm = this.displayWorkForm.bind(this);
-    this.workForm = this.workForm.bind(this);
-    this.removeWork = this.removeWork.bind(this);
-    this.removeStudy = this.removeStudy.bind(this);
-    this.imageUpload = this.imageUpload.bind(this);
-    this.loadExample = this.loadExample.bind(this); */
-
   function saveGeneralInfo(e) {
     e.preventDefault();
     const { target } = e;
     const { value } = target;
     const { name } = target;
     setGeneralInfo({
-      generalInfo: {
-
-        ...generalInfo,
-        [name]: value,
-      },
+      ...generalInfo,
+      [name]: value,
     });
   }
 
@@ -121,11 +63,8 @@ const App = () => {
     const { value } = target;
     const { name } = target;
     setStudiesInfo({
-      studiesInfo: {
-
-        ...studiesInfo,
-        [name]: value,
-      },
+      ...studiesInfo,
+      [name]: value,
     });
   }
 
@@ -142,16 +81,13 @@ const App = () => {
     const { value } = target;
     const { name } = target;
     setWorkInfo({
-      workInfo: {
-
-        ...workInfo,
-        [name]: value,
-      },
+      ...workInfo,
+      [name]: value,
     });
   }
 
   function addStudy() {
-    if (studiesList.length < 5) {
+    if (studiesList.length < 4) {
       setStudiesInfo({
         institute: '',
         title: '',
@@ -165,7 +101,8 @@ const App = () => {
   }
 
   function addWork() {
-    if (workList.length < 5) {
+    if (workList.length < 4) {
+      console.log(workInfo);
       setWorkInfo({
         position: '',
         company: '',
@@ -174,8 +111,8 @@ const App = () => {
         to: '',
         id: uniqid(),
       });
-      setWorkList(workList.concat(workInfo));
       setShowWorkInfo(false);
+      setWorkList(workList.concat(workInfo));
     }
   }
 
@@ -194,12 +131,14 @@ const App = () => {
   }
 
   function workForm() {
+    console.log(showWorkInfo);
     if (showWorkInfo) {
       return <WorkInfo saveWorkInfo={saveWorkInfo} />;
     } return null;
   }
 
   function displayWorkForm() {
+    console.log(showWorkInfo);
     if (showWorkInfo) {
       setShowWorkInfo(false);
     } else {
@@ -208,17 +147,23 @@ const App = () => {
   }
 
   function displayStudyButton() {
-    if (showStudyInfo) {
+    if (studiesList.length > 3) {
+      return null;
+    } if (showStudyInfo) {
       return <button onClick={addStudy} type="button" className="guardar">Guardiar estudio</button>;
-    }
-    return <button onClick={displayStudyForm} type="button">Agregar Estudios</button>;
+    } if (!showStudyInfo) {
+      return <button onClick={displayStudyForm} type="button">Agregar Estudios</button>;
+    } return null;
   }
 
   function displayWorkButton() {
-    if (showWorkInfo) {
+    if (workList.length > 3) {
+      return null;
+    } if (showWorkInfo) {
       return <button onClick={addWork} type="button" className="guardar">Guardar Experiencia</button>;
-    }
-    return <button onClick={displayWorkForm} type="button">Agregar Experiencia</button>;
+    } if (!showWorkInfo) {
+      return <button onClick={displayWorkForm} type="button">Agregar Experiencia</button>;
+    } return null;
   }
 
   function removeStudy(id) {
