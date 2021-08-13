@@ -11,9 +11,10 @@ const Preview = ({
     phoneNumber, email, description,
   } = generalInfo;
 
+  let avatar = photo;
+
   if (photo === '') {
-    // eslint-disable-next-line no-param-reassign
-    photo = `${process.env.PUBLIC_URL}/emptyAvatar.png`;
+    avatar = `${process.env.PUBLIC_URL}/emptyAvatar.png`;
   }
 
   function displayStudiesList() {
@@ -76,7 +77,7 @@ const Preview = ({
       </div>
       <div id="previewContact">
         <div id="flex">
-          <img src={photo} alt="avatar" id="avatar" />
+          <img src={avatar} alt="avatar" id="avatar" />
         </div>
         <p className="previewSubtitle">
           Detalles Personales
@@ -128,9 +129,10 @@ const Preview = ({
 };
 Preview.propTypes = {
   photo: PropTypes.string.isRequired,
-  workList: PropTypes.objectOf(PropTypes.object()).isRequired,
-  studiesList: PropTypes.objectOf(PropTypes.object()).isRequired,
-  generalInfo: PropTypes.objectOf(PropTypes.object()).isRequired,
+  workList: PropTypes.objectOf(PropTypes.any).isRequired,
+  studiesList: PropTypes.objectOf(PropTypes.any).isRequired,
+  generalInfo: PropTypes.objectOf(PropTypes.any).isRequired,
 };
+PropTypes.checkPropTypes();
 
 export default Preview;

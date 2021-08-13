@@ -1,5 +1,6 @@
 import React from 'react';
-/* eslint-disable */
+import PropTypes from 'prop-types';
+
 export default function WorkInfo({ saveWorkInfo }) {
   return (
 
@@ -14,3 +15,6 @@ export default function WorkInfo({ saveWorkInfo }) {
     </div>
   );
 }
+WorkInfo.propTypes = {
+  saveWorkInfo: PropTypes.func.isRequired,
+};

@@ -1,6 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-/* eslint-disable */
 export default function StudiesInfo({ saveStudiesInfo }) {
   return (
 
@@ -14,3 +14,6 @@ export default function StudiesInfo({ saveStudiesInfo }) {
     </div>
   );
 }
+StudiesInfo.propTypes = {
+  saveStudiesInfo: PropTypes.func.isRequired,
+};

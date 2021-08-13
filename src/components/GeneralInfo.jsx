@@ -30,5 +30,5 @@ export default function GeneralInfo({ saveGeneralInfo, savePhoto, generalInfo })
 GeneralInfo.propTypes = {
   saveGeneralInfo: PropTypes.func.isRequired,
   savePhoto: PropTypes.func.isRequired,
-  generalInfo: PropTypes.objectOf(PropTypes.object()).isRequired,
+  generalInfo: PropTypes.objectOf(PropTypes.any).isRequired,
 };
