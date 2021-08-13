@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React/* , { useState } */from 'react';
+import PropTypes from 'prop-types';
 import './Preview.css';
 
 const Preview = ({
@@ -125,6 +125,12 @@ const Preview = ({
       </div>
     </div>
   );
+};
+Preview.propTypes = {
+  photo: PropTypes.string.isRequired,
+  workList: PropTypes.objectOf(PropTypes.object()).isRequired,
+  studiesList: PropTypes.objectOf(PropTypes.object()).isRequired,
+  generalInfo: PropTypes.objectOf(PropTypes.object()).isRequired,
 };
 
 export default Preview;

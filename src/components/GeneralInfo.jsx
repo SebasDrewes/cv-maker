@@ -1,5 +1,6 @@
 import React from 'react';
-/* eslint-disable */
+import PropTypes from 'prop-types';
+
 export default function GeneralInfo({ saveGeneralInfo, savePhoto, generalInfo }) {
   const hiddenFileInput = React.useRef(null);
   const handleClick = () => {
@@ -26,3 +27,8 @@ export default function GeneralInfo({ saveGeneralInfo, savePhoto, generalInfo })
     </div>
   );
 }
+GeneralInfo.propTypes = {
+  saveGeneralInfo: PropTypes.func.isRequired,
+  savePhoto: PropTypes.func.isRequired,
+  generalInfo: PropTypes.objectOf(PropTypes.object()).isRequired,
+};
