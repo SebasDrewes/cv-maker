@@ -9,7 +9,6 @@ export default function GeneralInfo({ saveGeneralInfo, savePhoto, generalInfo })
     firstName, lastName, title, address, phoneNumber, email, description,
   } = generalInfo;
   return (
-    // eslint-disable-next-line react/jsx-filename-extension
     <div>
       <form>
         <input type="text" name="firstName" placeholder="Nombre" onChange={saveGeneralInfo} value={firstName} />

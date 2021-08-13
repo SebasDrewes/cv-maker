@@ -6,7 +6,7 @@ import { Link } from 'react-scroll';
 import GeneralInfo from './components/GeneralInfo';
 import StudiesInfo from './components/StudiesInfo';
 import WorkInfo from './components/WorkInfo';
-// import Preview from './components/Preview';
+import Preview from './components/Preview';
 
 const App = () => {
   const [generalInfo, setGeneralInfo] = useState({
@@ -20,7 +20,6 @@ const App = () => {
   });
 
   const [photo, setPhoto] = useState('');
-  document.write = photo;
   const [showStudyInfo, setShowStudyInfo] = useState(false);
 
   const [studiesInfo, setStudiesInfo] = useState({
@@ -102,7 +101,6 @@ const App = () => {
 
   function addWork() {
     if (workList.length < 4) {
-      console.log(workInfo);
       setWorkInfo({
         position: '',
         company: '',
@@ -131,14 +129,12 @@ const App = () => {
   }
 
   function workForm() {
-    console.log(showWorkInfo);
     if (showWorkInfo) {
       return <WorkInfo saveWorkInfo={saveWorkInfo} />;
     } return null;
   }
 
   function displayWorkForm() {
-    console.log(showWorkInfo);
     if (showWorkInfo) {
       setShowWorkInfo(false);
     } else {
@@ -330,7 +326,12 @@ Podes ver mis proyectos en: https://github.com/SebasDrewes`,
       </div>
       <h1 id="curriculum">CV Preview</h1>
       <div id="previewMainContainer">
-        {/* <Preview allInfo={this.state} ref={(el) => (this.componentRef = el)} /> */}
+        <Preview
+          generalInfo={generalInfo}
+          photo={photo}
+          studiesList={studiesList}
+          workList={workList}
+        />
       </div>
       <div id="bottom" />
     </div>
