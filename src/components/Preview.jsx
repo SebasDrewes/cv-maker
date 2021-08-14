@@ -1,10 +1,10 @@
-import React/* , { useState } */from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './Preview.css';
 
-const Preview = ({
+const Preview = React.forwardRef(({
   generalInfo, photo, studiesList, workList,
-}) => {
+}, ref) => {
   // def elementos general
   const {
     firstName, lastName, title, address,
@@ -64,7 +64,7 @@ const Preview = ({
     return works || null;
   }
   return (
-    <div id="previewContainer">
+    <div id="previewContainer" ref={ref}>
       <div id="previewMain">
         <p id="previewName">
           {firstName}
@@ -126,11 +126,11 @@ const Preview = ({
       </div>
     </div>
   );
-};
+});
 Preview.propTypes = {
   photo: PropTypes.string.isRequired,
-  workList: PropTypes.objectOf(PropTypes.any).isRequired,
-  studiesList: PropTypes.objectOf(PropTypes.any).isRequired,
+  workList: PropTypes.arrayOf(PropTypes.any).isRequired,
+  studiesList: PropTypes.arrayOf(PropTypes.any).isRequired,
   generalInfo: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 PropTypes.checkPropTypes();

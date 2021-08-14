@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+@media print {
+  @page { size: landscape; }
+}
 body {
   font-family: 'Nunito', serif;
   background-color: rgb(184, 183, 183);

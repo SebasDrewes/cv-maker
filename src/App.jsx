@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-// import ReactToPrint from 'react-to-print';
+import React, { useState, useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
 import './App.css';
 import uniqid from 'uniqid';
 import { Link } from 'react-scroll';
@@ -9,6 +9,10 @@ import WorkInfo from './components/WorkInfo';
 import Preview from './components/Preview';
 
 const App = () => {
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
   const [generalInfo, setGeneralInfo] = useState({
     firstName: '',
     lastName: '',
@@ -308,11 +312,7 @@ Podes ver mis proyectos en: https://github.com/SebasDrewes`,
         {studyList()}
         {studyForm()}
         {displayStudyButton()}
-        {/* <ReactToPrint
-          pageStyle="  @page { size: landscape; margin: 0; }"
-          trigger={() => <button type="button" className="pdf">Descargar PDF</button>}
-          content={() => this.componentRef}
-        /> */}
+        <button type="button" className="pdf" onClick={handlePrint}>Descargar PDF</button>
         <Link
           to="bottom"
           spy
@@ -328,6 +328,7 @@ Podes ver mis proyectos en: https://github.com/SebasDrewes`,
       <div id="previewMainContainer">
         <Preview
           generalInfo={generalInfo}
+          ref={componentRef}
           photo={photo}
           studiesList={studiesList}
           workList={workList}
