@@ -3,6 +3,7 @@
   @page { size: landscape; }
 }
 body {
+  margin: 0;
   font-family: 'Nunito', serif;
   background-color: rgb(184, 183, 183);
 }
